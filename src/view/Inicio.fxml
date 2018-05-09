@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane prefHeight="836.0" prefWidth="1728.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InicioController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="922.0" prefWidth="1728.0">
+         <children>
+            <ImageView fitHeight="913.0" fitWidth="1751.0" layoutX="-21.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Facultad_Login.png" />
+               </image>
+            </ImageView>
+            <AnchorPane prefHeight="76.0" prefWidth="1732.0" style="-fx-background-color: #347CFF;">
+               <children>
+                  <Label layoutX="90.0" layoutY="23.0" text="Inicio SiAcad" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="8.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 50;">
+                     <graphic>
+                        <ImageView fitHeight="56.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/ic_help_circle_white_36dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="268.0" fitWidth="755.0" layoutX="796.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Logo.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="143.0" layoutY="342.0" prefHeight="332.0" prefWidth="386.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="386.0" style="-fx-background-color: #347CFF; -fx-background-radius: 5;">
+                     <children>
+                        <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="23.0" layoutY="38.0" prefHeight="41.0" prefWidth="344.0" promptText="E-mail address" style="-fx-text-inner-color: FFFFFF; -fx-prompt-text-fill: #FFFF;" unFocusColor="WHITE" />
+                        <JFXPasswordField focusColor="WHITE" labelFloat="true" layoutX="21.0" layoutY="118.0" prefHeight="31.0" prefWidth="347.0" promptText="Password" style="-fx-text-inner-color: #FFFFFF; -fx-prompt-text-fill: #FFFFFF;" unFocusColor="WHITE" />
+                     </children>
+                  </AnchorPane>
+                  <JFXButton layoutX="23.0" layoutY="228.0" prefHeight="41.0" prefWidth="98.0" style="-fx-background-color: #347CFF;" text="ACCEDER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <Label layoutX="139.0" layoutY="237.0" text="Recuperar Contraseña" textFill="#347cff" />
+                  <Label layoutX="82.0" layoutY="291.0" text="¿Nuevo en el Sistema?" textFill="#347cff" />
+                  <Label layoutX="235.0" layoutY="291.0" text="Crear Cuenta" textFill="#347cff" underline="true" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
