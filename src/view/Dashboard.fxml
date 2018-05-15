@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="rootPane" prefHeight="897.0" prefWidth="1728.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="899.0" prefWidth="1728.0">
+         <children>
+            <ImageView fitHeight="913.0" fitWidth="1751.0" layoutX="-2.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Inicio_Maestro.png" />
+               </image>
+            </ImageView>
+            <AnchorPane fx:id="panelTopBar" prefHeight="76.0" prefWidth="1732.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #728EF9, #675DF9);">
+               <children>
+                  <JFXButton fx:id="btnHamburger" contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="8.0" onAction="#clickHamburger" prefHeight="60.0" prefWidth="60.0" ripplerFill="WHITE" style="-fx-background-radius: 50;">
+                     <graphic>
+                        <ImageView fitHeight="56.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/ic_menu_white_24dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <Label layoutX="84.0" layoutY="21.0" text="Inicio" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="695.0" prefHeight="205.0" prefWidth="1728.0" style="-fx-background-color: #E0E0E0;" />
+            <AnchorPane layoutX="1289.0" layoutY="139.0">
+               <children>
+                  <JFXButton fx:id="btnModoMaestro" contentDisplay="GRAPHIC_ONLY" layoutX="-10.0" layoutY="-5.0" onAction="#clickModoMaestro" ripplerFill="WHITE">
+                     <graphic>
+                        <AnchorPane fx:id="panelMaestro" prefHeight="89.0" prefWidth="386.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #728EF9, #675DF9); -fx-background-radius: 10 10 0 0;">
+                           <children>
+                              <AnchorPane layoutX="10.0" layoutY="13.0" opacity="0.26" prefHeight="66.0" prefWidth="66.0" style="-fx-background-color: #000000; -fx-background-radius: 40;" />
+                              <JFXButton fx:id="btnLogOut" contentDisplay="GRAPHIC_ONLY" layoutX="330.0" layoutY="23.0" onAction="#clickLogOut" prefHeight="48.0" prefWidth="48.0" ripplerFill="WHITE" style="-fx-background-radius: 50;">
+                                 <graphic>
+                                    <ImageView fx:id="imageLogOut" fitHeight="31.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/ic_close_circle_white_36dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <ImageView fitHeight="41.0" fitWidth="44.0" layoutX="23.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/ic_teach_white_36dp.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblnombreMaestro" layoutX="96.0" layoutY="15.0" text="Manolo Perez" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblMaestro" layoutX="96.0" layoutY="48.0" text="Maestro" textFill="WHITE" />
+                           </children>
+                        </AnchorPane>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="btnModoCoordinador" contentDisplay="GRAPHIC_ONLY" layoutX="-10.0" layoutY="84.0" onAction="#clickModoCoordinador" ripplerFill="#ffffff00">
+                     <graphic>
+                        <AnchorPane fx:id="panelCoordinador" prefHeight="89.0" prefWidth="386.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 0 0 10 10;">
+                           <children>
+                              <AnchorPane layoutX="10.0" layoutY="12.0" opacity="0.26" prefHeight="66.0" prefWidth="66.0" style="-fx-background-color: #000000; -fx-background-radius: 40;" />
+                              <ImageView fitHeight="41.0" fitWidth="44.0" layoutX="22.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/ic_school_white_36dp.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblCoordinador" layoutX="96.0" layoutY="16.0" text="Coordinador de Academia" textFill="#656565" />
+                              <Label fx:id="lblAcademia" layoutX="96.0" layoutY="44.0" text="Desarrollo de Software" textFill="#656565">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="300.0" maxWidth="0.0" minWidth="0.0" onMouseExited="#cerrarDrawer" prefHeight="897.0" prefWidth="0.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
