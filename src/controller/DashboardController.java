@@ -79,6 +79,8 @@ public class DashboardController implements Initializable {
 
     @FXML
     private JFXDrawer drawer;
+    
+    private String mododDeUsuario;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -109,8 +111,8 @@ public class DashboardController implements Initializable {
                         case "Calendario":
                             System.out.println("Click en Calendario");
                             break;
-                        case "Planes de Trabajo":
-                            System.out.println("Click en Planes de Trabajo");
+                        case "Planes de Curso":
+                            System.out.println("Click en Planes de Curso");
                             break;
                         case "Avances Programáticos":
                             System.out.println("Click en Avances Programáticos");
@@ -151,7 +153,8 @@ public class DashboardController implements Initializable {
     void clickModoCoordinador(ActionEvent event) {
         System.out.println("Click en modo Coordinador");
         imageLogOut.setImage(new Image(getClass().getResourceAsStream("/resources/ic_close_circle_grey600_36dp.png")));
-        panelCoordinador.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #D4218D, #873A94); -fx-background-radius: 0 0 10 10;");
+        panelCoordinador.setStyle(
+                "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #D4218D, #873A94); -fx-background-radius: 0 0 10 10;");
         lblCoordinador.setTextFill(Color.web("#FFFFFF"));
         lblAcademia.setTextFill(Color.web("#FFFFFF"));
         panelMaestro.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 10 10 0 0;");
@@ -164,7 +167,8 @@ public class DashboardController implements Initializable {
     void clickModoMaestro(ActionEvent event) {
         System.out.println("Click en modo maestro");
         imageLogOut.setImage(new Image(getClass().getResourceAsStream("/resources/ic_close_circle_white_36dp.png")));
-        panelMaestro.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #728EF9, #675DF9); -fx-background-radius: 10 10 0 0;");
+        panelMaestro.setStyle(
+                "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #728EF9, #675DF9); -fx-background-radius: 10 10 0 0;");
         lblnombreMaestro.setTextFill(Color.web("#FFFFFF"));
         lblMaestro.setTextFill(Color.web("#FFFFFF"));
         panelCoordinador.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 0 0 10 10;");

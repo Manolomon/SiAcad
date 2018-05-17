@@ -29,8 +29,9 @@ public class SiAcad extends Application {
         stage.setTitle("Sistema Integral de Control de Academias");
         Scene scene = new Scene(root);
         
-        stage.setResizable(false);
-        stage.sizeToScene();
+//        stage.setResizable(false);
+//        stage.sizeToScene();
+        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.show();
     }
