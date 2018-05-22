@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="897.0" prefWidth="316.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="316.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="172.0" prefWidth="316.0" style="-fx-background-color: #873A94;">
          <children>
@@ -62,7 +62,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton accessibleText="Avances Programáticos" alignment="BASELINE_LEFT" prefHeight="55.0" prefWidth="316.0" ripplerFill="#873a94" text="     Reuniones">
+      <JFXButton accessibleText="Reuniones" alignment="BASELINE_LEFT" prefHeight="55.0" prefWidth="316.0" ripplerFill="#873a94" text="     Reuniones">
          <graphic>
             <ImageView fitHeight="36.0" fitWidth="36.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>

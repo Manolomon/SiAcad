@@ -1,0 +1,22 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17/05/2018, 08:13:47 PM
+    Author     : Manolo Perez
+*/
+
+.jfx-decorator {
+    -fx-decorator-color: linear-gradient(from 25% 25% to 100% 100%, #c0841c, #aa0054);
+}
+
+.jfx-decorator .jfx-decorator-buttons-container {
+    -fx-background-color: -fx-decorator-color;
+}
+
+.jfx-decorator .resize-border {
+    -fx-border-color: -fx-decorator-color;
+    -fx-border-width: 0 0 0 0;
+}

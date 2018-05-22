@@ -9,16 +9,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="rootPane" prefHeight="897.0" prefWidth="1728.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
+<StackPane fx:id="rootPane" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="899.0" prefWidth="1728.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0">
          <children>
-            <ImageView fitHeight="913.0" fitWidth="1751.0" layoutX="-2.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../resources/Inicio_Maestro.png" />
-               </image>
-            </ImageView>
-            <AnchorPane fx:id="panelTopBar" prefHeight="76.0" prefWidth="1732.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #728EF9, #675DF9);">
+            <AnchorPane fx:id="panelTopBar" prefHeight="76.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #728EF9, #675DF9);">
                <children>
                   <JFXButton fx:id="btnHamburger" contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="8.0" onAction="#clickHamburger" prefHeight="60.0" prefWidth="60.0" ripplerFill="WHITE" style="-fx-background-radius: 50;">
                      <graphic>
@@ -36,8 +31,13 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutY="695.0" prefHeight="205.0" prefWidth="1728.0" style="-fx-background-color: #E0E0E0;" />
-            <AnchorPane layoutX="1289.0" layoutY="139.0">
+            <ImageView fitHeight="746.0" fitWidth="1929.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Inicio_Maestro.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutY="759.0" prefHeight="241.0" prefWidth="1920.0" style="-fx-background-color: #E0E0E0;" />
+            <AnchorPane layoutX="1440.0" layoutY="132.0">
                <children>
                   <JFXButton fx:id="btnModoMaestro" contentDisplay="GRAPHIC_ONLY" layoutX="-10.0" layoutY="-5.0" onAction="#clickModoMaestro" ripplerFill="WHITE">
                      <graphic>
@@ -90,7 +90,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <JFXDrawer fx:id="drawer" defaultDrawerSize="300.0" maxWidth="0.0" minWidth="0.0" onMouseExited="#cerrarDrawer" prefHeight="897.0" prefWidth="0.0" />
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="300.0" maxWidth="0.0" minWidth="0.0" onMouseExited="#cerrarDrawer" prefHeight="1000.0" prefWidth="0.0" />
          </children>
       </AnchorPane>
    </children>

@@ -7,6 +7,7 @@
 
 package controller;
 
+import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,11 +28,11 @@ public class SiAcad extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/Inicio.fxml"));
         stage.setTitle("Sistema Integral de Control de Academias");
-        Scene scene = new Scene(root);
-        
+        Scene scene = new Scene(root);//new JFXDecorator(stage, root, false, false, true));
+        scene.getStylesheets().add(getClass().getResource("/resources/CSS/Styles.css").toExternalForm());
 //        stage.setResizable(false);
 //        stage.sizeToScene();
-        stage.setFullScreen(true);
+        //stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }

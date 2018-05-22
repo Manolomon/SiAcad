@@ -80,7 +80,7 @@ public class DashboardController implements Initializable {
     @FXML
     private JFXDrawer drawer;
     
-    private String mododDeUsuario;
+    private String modoDeUsuario = "Maestro";
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -98,7 +98,12 @@ public class DashboardController implements Initializable {
     @FXML
     void clickHamburger(ActionEvent event) {
         try {
-            VBox box = FXMLLoader.load(getClass().getResource("/view/DrawerMaestro.fxml"));
+            VBox box;
+            if(modoDeUsuario.equals("Maestro")) {
+                box = FXMLLoader.load(getClass().getResource("/view/DrawerMaestro.fxml"));
+            } else {
+                box = FXMLLoader.load(getClass().getResource("/view/DrawerCoordinador.fxml"));
+            }
             for (Node node : box.getChildren()) {
                 node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
                     if (node.getAccessibleText() != null) {
@@ -120,6 +125,12 @@ public class DashboardController implements Initializable {
                         case "Perfil":
                             System.out.println("Click en Perfil");
                             break;
+                        case "Planes de Trabajo":
+                            System.out.println("Click en Plan de Trabajo");
+                            break;
+                        case "Reuniones":
+                            System.out.println("Click en Reuniones");
+                            break;
                         }
                         drawer.close();
                         drawer.setMouseTransparent(true);
@@ -135,6 +146,33 @@ public class DashboardController implements Initializable {
         }
     }
 
+    public void cambiarModoMaestro() {
+        modoDeUsuario = "Maestro";
+        System.out.println("Click en modo maestro");
+        imageLogOut.setImage(new Image(getClass().getResourceAsStream("/resources/ic_close_circle_white_36dp.png")));
+        panelMaestro.setStyle(
+                "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #728EF9, #675DF9); -fx-background-radius: 10 10 0 0;");
+        lblnombreMaestro.setTextFill(Color.web("#FFFFFF"));
+        lblMaestro.setTextFill(Color.web("#FFFFFF"));
+        panelCoordinador.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 0 0 10 10;");
+        lblCoordinador.setTextFill(Color.web("#656565"));
+        lblAcademia.setTextFill(Color.web("#656565"));
+        panelTopBar.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #728EF9, #675DF9);");
+    }
+
+    public void cambiarModoCoordinador () {
+        modoDeUsuario = "Coordinador";
+        System.out.println("Click en modo Coordinador");
+        imageLogOut.setImage(new Image(getClass().getResourceAsStream("/resources/ic_close_circle_grey600_36dp.png")));
+        panelCoordinador.setStyle(
+                "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #D4218D, #873A94); -fx-background-radius: 0 0 10 10;");
+        lblCoordinador.setTextFill(Color.web("#FFFFFF"));
+        lblAcademia.setTextFill(Color.web("#FFFFFF"));
+        panelMaestro.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 10 10 0 0;");
+        lblnombreMaestro.setTextFill(Color.web("#656565"));
+        lblMaestro.setTextFill(Color.web("#656565"));
+        panelTopBar.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #D4218D, #873A94);");
+    }
     @FXML
     void clickLogOut(ActionEvent event) {
         try {
@@ -151,30 +189,12 @@ public class DashboardController implements Initializable {
 
     @FXML
     void clickModoCoordinador(ActionEvent event) {
-        System.out.println("Click en modo Coordinador");
-        imageLogOut.setImage(new Image(getClass().getResourceAsStream("/resources/ic_close_circle_grey600_36dp.png")));
-        panelCoordinador.setStyle(
-                "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #D4218D, #873A94); -fx-background-radius: 0 0 10 10;");
-        lblCoordinador.setTextFill(Color.web("#FFFFFF"));
-        lblAcademia.setTextFill(Color.web("#FFFFFF"));
-        panelMaestro.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 10 10 0 0;");
-        lblnombreMaestro.setTextFill(Color.web("#656565"));
-        lblMaestro.setTextFill(Color.web("#656565"));
-        panelTopBar.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #D4218D, #873A94);");
+        cambiarModoCoordinador();
     }
 
     @FXML
     void clickModoMaestro(ActionEvent event) {
-        System.out.println("Click en modo maestro");
-        imageLogOut.setImage(new Image(getClass().getResourceAsStream("/resources/ic_close_circle_white_36dp.png")));
-        panelMaestro.setStyle(
-                "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #728EF9, #675DF9); -fx-background-radius: 10 10 0 0;");
-        lblnombreMaestro.setTextFill(Color.web("#FFFFFF"));
-        lblMaestro.setTextFill(Color.web("#FFFFFF"));
-        panelCoordinador.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 0 0 10 10;");
-        lblCoordinador.setTextFill(Color.web("#656565"));
-        lblAcademia.setTextFill(Color.web("#656565"));
-        panelTopBar.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #728EF9, #675DF9);");
+        cambiarModoMaestro();
     }
 
 }
