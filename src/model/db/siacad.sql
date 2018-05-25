@@ -84,6 +84,7 @@ CREATE TABLE PlanDeTrabajo (
     formato varchar(50),
     fechaAprobacion Date,
     objetivoGeneral varchar(200),
+    programaEducativo varchar(500),
     PRIMARY KEY (idPlanDeTrabajo)
 );
 
@@ -113,7 +114,7 @@ CREATE TABLE PlanDeCurso (
     fecha Date,
     bibliografia varchar(3000),
     idCurso int,
-    PRIMARY KEY (idPlanDeCurso)
+    PRIMARY KEY (idPlanDeCurso),
     FOREIGN KEY (idCurso) REFERENCES Curso(idCurso)
 );
 
@@ -125,10 +126,56 @@ CREATE TABLE Evaluacion (
     tecnicasDidacticas varchar(500),
     temas varchar(1000),
     idPlanDeTrabajo int,
-    idPlanDeCurso int,
     PRIMARY KEY (idEvaluacion),
-    FOREIGN KEY (idPlanDeTrabajo) REFERENCES PlanDeTrabajo(idPlanDeTrabajo),
+    FOREIGN KEY (idPlanDeTrabajo) REFERENCES PlanDeTrabajo(idPlanDeTrabajo)
+);
+
+CREATE TABLE Evaluacion_PlanDeCurso (
+    idEvaluacion int NOT NULL,
+    idPlanDeCurso int NOT NULL,
+    PRIMARY KEY (idEvaluacion, idPlanDeCurso),
+    FOREIGN KEY (idEvaluacion) REFERENCES Evaluacion(idEvaluacion),
     FOREIGN KEY (idPlanDeCurso) REFERENCES PlanDeCurso(idPlanDeCurso)
 );
 
+CREATE TABLE Planeacion (
+    idPlaneacion int NOT NULL auto_increment,
+    fechas varchar(100),
+    temas varchar(1000),
+    unidad int,
+    tecnicasDidacticas varchar(800),
+    idPlanDeCurso int,
+    PRIMARY KEY (idPlaneacion),
+    FOREIGN KEY (idPlanDeCurso) REFERENCES PlanDeCurso(idPlanDeCurso)    
+);
 
+CREATE TABLE MinutaDeAcademia (
+    idMinutaDeAcademia int NOT NULL auto_increment,
+    fecha date,
+    hora varchar(10),
+    objetivo varchar(300),
+    temas varchar(1500),
+    conclusiones varchar(500),   
+    PRIMARY KEY (idMinutaDeAcademia)
+);
+
+CREATE TABLE Reunion (
+    idReunion int NOT NULL auto_increment,
+    nombre varchar(100),
+    fechaInicio date,
+    fechaFin date,
+    informacionAdicional varchar(300),
+    lugar varchar(150),
+    idMinutaAcademia int,
+    PRIMARY KEY (idReunion),
+    FOREIGN KEY (idMinutaAcademia) REFERENCES MinutaDeAcademia(idMinutaDeAcademia)
+);
+
+CREATE TABLE PeriodoE (
+    idPeriodo int NOT NULL auto_increment,
+    idAcademia int NOT NULL,
+    idReunion int NOT NULL,
+    PRIMARY KEY (idPeriodo, idAcademia, idReunion),
+    FOREIGN KEY (idAcademia) REFERENCES Academia(idAcademia),
+    FOREIGN KEY (idReunion) REFERENCES Reunion(idReunion)
+);

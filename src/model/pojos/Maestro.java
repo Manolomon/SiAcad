@@ -7,15 +7,15 @@ package model.pojos;
 public class Maestro {
     private Integer idUsuarioAcademico;
     private String noPersonal;
-    private Integer idTipo;
+    private String tipo;
 
     public Maestro() {
     }
 
-    public Maestro(Integer idUsuarioAcademico, String noPersonal, Integer idTipo) {
+    public Maestro(Integer idUsuarioAcademico, String noPersonal, String tipo) {
         this.idUsuarioAcademico = idUsuarioAcademico;
         this.noPersonal = noPersonal;
-        this.idTipo = idTipo;
+        this.tipo = tipo;
     }
 
     public Integer getIdUsuarioAcademico() {
@@ -34,13 +34,11 @@ public class Maestro {
         this.noPersonal = noPersonal;
     }
 
-    public Integer getIdTipo() {
-        return idTipo;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setIdTipo(Integer idTipo) {
-        this.idTipo = idTipo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
-    
-    
 }
