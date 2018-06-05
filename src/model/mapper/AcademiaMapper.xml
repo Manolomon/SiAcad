@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Academia">
+    <select id="obtenerAcademias" resultType="model.pojos.Academia">
+        SELECT * FROM academia
+    </select>
+    
+    <select id="obtenerExperienciasEducativas" resultType="model.pojos.ExperienciaEducativa" parameterType="Integer">
+        SELECT * FROM experienciaeducativa WHERE idAcademia = #{idAcademia}
+    </select>
+    
+    <select id="obtenerReuniones" resultType="model.pojos.Reunion" parameterType="model.pojos.Periodo">
+        SELECT * FROM reunion WHERE fechaInicio = #{fechaInicio} AND fechaFin = #{fechaFin}
+    </select>
+    
+    <insert id="guardarAcademia" parameterType="String">
+        INSERT INTO academia (nombre)
+        VALUES(#{nombre})
+    </insert>
+    
+    <delete id="eliminarAcademia" parameterType="Integer">
+        DELETE FROM academia WHERE idAcademia = #{idAcademia}
+    </delete>
+    
+    <select id="obtenerMaestros" resultType="model.pojos.Maestro" parameterType="Integer">
+        SELECT u.idUsuarioAcademico, u.nombre, u.apellidos
+        FROM academia a
+        LEFT OUTER JOIN experienciaeducativa e ON a.idAcademia = e.idAcademia
+        LEFT OUTER JOIN curso c ON c.idExperienciaEducativa = e.idExperienciaEducativa
+        LEFT OUTER JOIN periodoc pc ON pc.idCurso = c.idCurso
+        LEFT OUTER JOIN maestro m ON m.idUsuarioAcademico = pc.idMaestro
+        LEFT OUTER JOIN usuarioacademico u ON u.idUsuarioAcademico = idUsuarioAcademico
+        WHERE a.idAcademia = {idAcademia}
+    </select> 
+</mapper>
+

@@ -6,39 +6,41 @@ package model.pojos;
  */
 public class Maestro {
   private Integer idUsuarioAcademico;
-  private String noPersonal;
-  private String tipo;
+  private String nombre;
+  private String apellidos;
 
   public Maestro() {
   }
 
-  public Maestro(Integer idUsuarioAcademico, String noPersonal, String tipo) {
-    this.idUsuarioAcademico = idUsuarioAcademico;
-    this.noPersonal = noPersonal;
-    this.tipo = tipo;
-  }
+    public Maestro(Integer idUsuarioAcademico, String nombre, String apellidos) {
+        this.idUsuarioAcademico = idUsuarioAcademico;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+    }
 
-  public Integer getIdUsuarioAcademico() {
-    return idUsuarioAcademico;
-  }
+    public Integer getIdUsuarioAcademico() {
+        return idUsuarioAcademico;
+    }
 
-  public void setIdUsuarioAcademico(Integer idUsuarioAcademico) {
-    this.idUsuarioAcademico = idUsuarioAcademico;
-  }
+    public void setIdUsuarioAcademico(Integer idUsuarioAcademico) {
+        this.idUsuarioAcademico = idUsuarioAcademico;
+    }
 
-  public String getNoPersonal() {
-    return noPersonal;
-  }
+    public String getNombre() {
+        return nombre;
+    }
 
-  public void setNoPersonal(String noPersonal) {
-    this.noPersonal = noPersonal;
-  }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-  public String getTipo() {
-    return tipo;
-  }
+    public String getApellidos() {
+        return apellidos;
+    }
 
-  public void setTipo(String tipo) {
-    this.tipo = tipo;
-  }
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+  
+  
 }

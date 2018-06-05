@@ -90,6 +90,17 @@ CREATE TABLE PlanDeTrabajo (
     PRIMARY KEY (idPlanDeTrabajo)
 );
 
+CREATE TABLE PeriodoA (
+    idPeriodo int NOT NULL auto_increment,
+    idAcademia int NOT NULL,
+    idPlanDeTrabajo int NOT NULL,
+    fechaInicio Date,
+    fechaFin Date,
+    PRIMARY KEY (idPeriodo,idAcademia,idPlanDeTrabajo),
+    FOREIGN KEY (idAcademia) REFERENCES Academia(idAcademia),
+    FOREIGN KEY (idPlanDeTrabajo) REFERENCES PlanDeTrabajo(idPlanDeTrabajo)
+);
+
 CREATE TABLE EEPlanTrabajo (
     idEEPlanTrabajo int NOT NULL auto_increment,
     nombre varchar(70),
@@ -161,6 +172,15 @@ CREATE TABLE MinutaDeAcademia (
     PRIMARY KEY (idMinutaDeAcademia)
 );
 
+CREATE TABLE Participante_Minuta (
+    idParticipante int NOT NULL auto_increment,
+    idMaestro int,
+    idMinutaDeAcademia int,
+    PRIMARY KEY (idParticipante,idMaestro,idMinutaDeAcademia),
+    FOREIGN KEY (idMaestro) REFERENCES Maestro(idUsuarioAcademico),
+    FOREIGN KEY (idDocumento) REFERENCES MinutaDeAcademia(idMinutaDeAcademia)
+);
+
 CREATE TABLE Reunion (
     idReunion int NOT NULL auto_increment,
     nombre varchar(100),
@@ -177,6 +197,8 @@ CREATE TABLE PeriodoE (
     idPeriodo int NOT NULL auto_increment,
     idAcademia int NOT NULL,
     idReunion int NOT NULL,
+    fechaInicio Date,
+    fechaFin Date,
     PRIMARY KEY (idPeriodo, idAcademia, idReunion),
     FOREIGN KEY (idAcademia) REFERENCES Academia(idAcademia),
     FOREIGN KEY (idReunion) REFERENCES Reunion(idReunion)
