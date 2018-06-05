@@ -1,12 +1,15 @@
 /*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 17/05/2018, 08:13:47 PM
-    Author     : Manolo Perez
-*/
+ * Styles.css
+ *
+ * Copyright (c) 2018, SiAcad
+ * All rights reserved.
+ */
+
+
+/******************************************
+*  Author : Manolo Pérez   
+*  Created On :  Thu May 17 2018
+*******************************************/
 
 .jfx-decorator {
     -fx-decorator-color: linear-gradient(from 25% 25% to 100% 100%, #c0841c, #aa0054);
@@ -19,4 +22,75 @@ and open the template in the editor.
 .jfx-decorator .resize-border {
     -fx-border-color: -fx-decorator-color;
     -fx-border-width: 0 0 0 0;
+}
+
+JFXListView .scroll-bar:horizontal .track,
+JFXListView .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius: 2em;
+}
+
+JFXListView .scroll-bar:horizontal .increment-button,
+JFXListView .scroll-bar:horizontal .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-padding: 0 0 10 0;
+}
+
+JFXListView .scroll-bar:vertical .increment-button,
+JFXListView .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-padding: 0 10 0 0;
+}
+
+JFXListView .scroll-bar .increment-arrow,
+JFXListView .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0;
+}
+
+JFXListView .scroll-bar:horizontal .thumb,
+JFXListView .scroll-bar:vertical .thumb {
+    -fx-background-color: derive(black, 90%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.list-cell:even,
+.list-cell:odd,
+.list-cell:empty {
+    -fx-background-color: WHITE;
+}
+
+
+/*.jfx-list-view{
+-fx-background-insets: 0;
+-fx-padding: 10;
+-fx-cell-vertical-margin: 10.0;
+-fx-vertical-gap: 10.0;
+}*/
+
+.jfx-popup-container {
+    -fx-background-color: WHITE;
+}
+
+.jfx-list-cell:selected {
+    -fx-background-color: WHITE;
+    /* #3d8c91*/
+}
+
+
+/*.jfx-list-cell{
+-fx-background-insets: 0.0;
+}*/
+
+.jfx-list-cell .jfx-list-cell {
+    -fx-rippler-fill: WHITE;
+}
+
+.jfx-list-cell:hover {
+    -fx-background-color: WHITE;
 }

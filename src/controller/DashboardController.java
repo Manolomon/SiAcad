@@ -12,6 +12,8 @@ import com.jfoenix.controls.JFXDrawer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -95,6 +97,24 @@ public class DashboardController implements Initializable {
     drawer.setMouseTransparent(true);
   }
 
+  public void cargarPantalla(String nombrePantalla) {
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("/view/" + nombrePantalla + ".fxml"));
+    try {
+      loader.load();
+    } catch (IOException ex) {
+      Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    //FXMLVerMisCursosController display = loader.getController();
+    //display.asignarDatos(user);
+    StackPane agregarView = loader.getRoot();
+    Scene newScene = new Scene(agregarView);
+    Stage curStage = (Stage) rootPane.getScene().getWindow();
+    newScene.getStylesheets().add(getClass().getResource("/resources/CSS/Styles.css").toExternalForm());
+    curStage.setScene(newScene);
+    curStage.show();
+  }
+
   @FXML
   void clickHamburger(ActionEvent event) {
     try {
@@ -117,7 +137,7 @@ public class DashboardController implements Initializable {
               System.out.println("Click en Calendario");
               break;
             case "Planes de Curso":
-              System.out.println("Click en Planes de Curso");
+              cargarPantalla("PlanDeCurso");
               break;
             case "Avances Programáticos":
               System.out.println("Click en Avances Programáticos");
@@ -129,7 +149,7 @@ public class DashboardController implements Initializable {
               System.out.println("Click en Plan de Trabajo");
               break;
             case "Reuniones":
-              System.out.println("Click en Reuniones");
+              cargarPantalla("MinutaDeReunion");
               break;
             }
             drawer.close();
