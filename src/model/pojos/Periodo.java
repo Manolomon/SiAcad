@@ -1,6 +1,6 @@
 package model.pojos;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *

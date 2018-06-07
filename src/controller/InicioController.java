@@ -49,7 +49,7 @@ public class InicioController implements Initializable {
   private ImageView btnInfo;
 
   @FXML
-  void clickAcceder(ActionEvent event) {
+  public void clickAcceder(ActionEvent event) {
     try {
       StackPane registroView;
       registroView = FXMLLoader.load(getClass().getResource("/view/Dashboard.fxml"));
@@ -63,7 +63,7 @@ public class InicioController implements Initializable {
   }
 
   @FXML
-  void clickSignUp(ActionEvent event) {
+  public void clickSignUp(ActionEvent event) {
 
   }
 

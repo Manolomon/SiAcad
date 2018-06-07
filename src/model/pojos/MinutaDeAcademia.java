@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public class MinutaDeAcademia {
     private Integer idMinutaDeAcademia;
+    private Integer idReunion;
     private Date fecha;
     private String hora;
     private String objetivo;
@@ -17,8 +18,8 @@ public class MinutaDeAcademia {
     public MinutaDeAcademia() {
     }
 
-    public MinutaDeAcademia(Integer idMinutaDeAcademia, Date fecha, String hora, String objetivo, String temas, String conclusiones) {
-        this.idMinutaDeAcademia = idMinutaDeAcademia;
+    public MinutaDeAcademia(Integer idReunion, Date fecha, String hora, String objetivo, String temas, String conclusiones) {
+        this.idReunion = idReunion;
         this.fecha = fecha;
         this.hora = hora;
         this.objetivo = objetivo;
@@ -32,6 +33,14 @@ public class MinutaDeAcademia {
 
     public void setIdMinutaDeAcademia(Integer idMinutaDeAcademia) {
         this.idMinutaDeAcademia = idMinutaDeAcademia;
+    }
+
+    public Integer getIdReunion() {
+        return idReunion;
+    }
+
+    public void setIdReunion(Integer idReunion) {
+        this.idReunion = idReunion;
     }
 
     public Date getFecha() {

@@ -11,6 +11,10 @@
  */
 
 
+CREATE DATABASE SiAcad;
+
+USE SiAcad;
+
 CREATE TABLE Academia (
     idAcademia int NOT NULL auto_increment,
     nombre varchar(60),
@@ -162,35 +166,36 @@ CREATE TABLE Planeacion (
     FOREIGN KEY (idPlanDeCurso) REFERENCES PlanDeCurso(idPlanDeCurso)    
 );
 
-CREATE TABLE MinutaDeAcademia (
-    idMinutaDeAcademia int NOT NULL auto_increment,
-    fecha date,
-    hora varchar(10),
-    objetivo varchar(300),
-    temas varchar(1500),
-    conclusiones varchar(500),   
-    PRIMARY KEY (idMinutaDeAcademia)
-);
-
-CREATE TABLE Participante_Minuta (
-    idParticipante int NOT NULL auto_increment,
-    idMaestro int,
-    idMinutaDeAcademia int,
-    PRIMARY KEY (idParticipante,idMaestro,idMinutaDeAcademia),
-    FOREIGN KEY (idMaestro) REFERENCES Maestro(idUsuarioAcademico),
-    FOREIGN KEY (idDocumento) REFERENCES MinutaDeAcademia(idMinutaDeAcademia)
-);
-
 CREATE TABLE Reunion (
     idReunion int NOT NULL auto_increment,
+    idAcademia int NOT NULL,
     nombre varchar(100),
     fechaInicio date,
     fechaFin date,
     informacionAdicional varchar(300),
     lugar varchar(150),
-    idMinutaAcademia int,
-    PRIMARY KEY (idReunion),
-    FOREIGN KEY (idMinutaAcademia) REFERENCES MinutaDeAcademia(idMinutaDeAcademia)
+    PRIMARY KEY (idReunion, idAcademia),
+    FOREIGN KEY (idAcademia) REFERENCES Academia(idAcademia)
+);
+
+CREATE TABLE MinutaDeAcademia (
+    idMinutaDeAcademia int NOT NULL auto_increment,
+    idReunion int NOT NULL,
+    fecha date,
+    hora varchar(10),
+    objetivo varchar(300),
+    temas varchar(1500),
+    conclusiones varchar(500),   
+    PRIMARY KEY (idMinutaDeAcademia),
+    FOREIGN KEY (idReunion) REFERENCES Reunion(idReunion)
+);
+
+CREATE TABLE Participante_Minuta (
+    idMaestro int NOT NULL,
+    idMinutaDeAcademia int NOT NULL,
+    PRIMARY KEY (idMaestro,idMinutaDeAcademia),
+    FOREIGN KEY (idMaestro) REFERENCES Maestro(idUsuarioAcademico),
+    FOREIGN KEY (idMinutaDeAcademia) REFERENCES MinutaDeAcademia(idMinutaDeAcademia)
 );
 
 CREATE TABLE PeriodoE (

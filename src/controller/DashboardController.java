@@ -92,7 +92,7 @@ public class DashboardController implements Initializable {
   }
 
   @FXML
-  void cerrarDrawer(MouseEvent event) {
+  public void cerrarDrawer(MouseEvent event) {
     drawer.close();
     drawer.setMouseTransparent(true);
   }
@@ -116,7 +116,7 @@ public class DashboardController implements Initializable {
   }
 
   @FXML
-  void clickHamburger(ActionEvent event) {
+  public void clickHamburger(ActionEvent event) {
     try {
       VBox box;
       if (modoDeUsuario.equals("Maestro")) {
@@ -146,7 +146,7 @@ public class DashboardController implements Initializable {
               System.out.println("Click en Perfil");
               break;
             case "Planes de Trabajo":
-              System.out.println("Click en Plan de Trabajo");
+            cargarPantalla("PlanDeTrabajo");
               break;
             case "Reuniones":
               cargarPantalla("MinutaDeReunion");
@@ -195,7 +195,7 @@ public class DashboardController implements Initializable {
   }
 
   @FXML
-  void clickLogOut(ActionEvent event) {
+  public void clickLogOut(ActionEvent event) {
     try {
       StackPane Login;
       Login = FXMLLoader.load(getClass().getResource("/view/Inicio.fxml"));
@@ -209,12 +209,12 @@ public class DashboardController implements Initializable {
   }
 
   @FXML
-  void clickModoCoordinador(ActionEvent event) {
+  public void clickModoCoordinador(ActionEvent event) {
     cambiarModoCoordinador();
   }
 
   @FXML
-  void clickModoMaestro(ActionEvent event) {
+  public void clickModoMaestro(ActionEvent event) {
     cambiarModoMaestro();
   }
 

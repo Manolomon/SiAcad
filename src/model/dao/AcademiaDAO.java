@@ -11,106 +11,123 @@ import model.MyBatisUtils;
 import model.pojos.Academia;
 import model.pojos.ExperienciaEducativa;
 import model.pojos.Maestro;
+import model.pojos.Periodo;
 import model.pojos.Reunion;
 import org.apache.ibatis.session.SqlSession;
 
 public class AcademiaDAO {
-    public static List<Academia> obtenerAcademias()
-    {
+    public static List<Academia> obtenerAcademias() {
         List<Academia> lista = new ArrayList<Academia>();
         SqlSession conn = null;
-        try{
+        try {
             conn = MyBatisUtils.getSession();
             lista = conn.selectList("Academia.obtenerAcademias");
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }finally{
-            if(conn!=null){
+        } finally {
+            if (conn != null) {
                 conn.close();
             }
         }
         return lista;
     }
-    
-    public static List<ExperienciaEducativa> obtenerExperienciasEducativas()
-    {
+
+    public static Academia obtenerAcademiaId(Integer idAcademia) {//throws Exception{
+        Academia lista = null;
+        SqlSession conn = null;
+        try {
+            conn = MyBatisUtils.getSession();
+            lista = conn.selectOne("Academia.obtenerAcademiaId", idAcademia);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            //throw ex;
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return lista;
+    }
+
+    public static List<ExperienciaEducativa> obtenerExperienciasEducativas() {
         List<ExperienciaEducativa> lista = new ArrayList<ExperienciaEducativa>();
         SqlSession conn = null;
-        try{
+        try {
             conn = MyBatisUtils.getSession();
             lista = conn.selectList("Academia.obtenerExperienciasEducativas");
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }finally{
-            if(conn!=null){
+        } finally {
+            if (conn != null) {
                 conn.close();
             }
         }
         return lista;
     }
-    
-    public static List<Reunion> obtenerReuniones()
-    {
+
+    public static List<Reunion> obtenerReuniones(Academia academia) throws Exception{
         List<Reunion> lista = new ArrayList<Reunion>();
         SqlSession conn = null;
-        try{
+        try {
             conn = MyBatisUtils.getSession();
-            lista = conn.selectList("Academia.obtenerReuniones");
-        }catch(Exception ex){
+            System.out.println("Holis");
+            lista = conn.selectList("Academia.obtenerReuniones", academia);
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }finally{
-            if(conn!=null){
+            throw ex;
+        } finally {
+            if (conn != null) {
                 conn.close();
             }
         }
         return lista;
     }
-        
-    public static boolean guardarAcademia(String nombreAcademia){
+
+    public static boolean guardarAcademia(String nombreAcademia) {
         SqlSession conn = null;
-        try{
+        try {
             conn = MyBatisUtils.getSession();
-            conn.insert("Academia.guardarAcademia",nombreAcademia);
+            conn.insert("Academia.guardarAcademia", nombreAcademia);
             conn.commit();
             return true;
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }finally{
-            if(conn!=null){
+        } finally {
+            if (conn != null) {
                 conn.close();
             }
         }
         return false;
     }
-    
-    public static boolean eliminarAcademia(Integer id){
+
+    public static boolean eliminarAcademia(Integer id) {
         SqlSession conn = null;
-        try{
+        try {
             conn = MyBatisUtils.getSession();
-            conn.delete("Academia.eliminarAcademia",id);
+            conn.delete("Academia.eliminarAcademia", id);
             conn.commit();
             return true;
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }finally{
-            if(conn!=null){
+        } finally {
+            if (conn != null) {
                 conn.close();
             }
         }
         return false;
     }
-    
-   public static List<Maestro> obtenerMaestros(Integer idAcademia)
-    {
+
+    public static List<Maestro> obtenerMaestros(Integer idAcademia) throws Exception{
         List<Maestro> lista = new ArrayList<Maestro>();
         SqlSession conn = null;
-        try{
+        try {
             conn = MyBatisUtils.getSession();
-            lista = conn.selectList("Academia.obtenerMaestros",idAcademia);
-        }catch(Exception ex){
+            lista = conn.selectList("Academia.obtenerMaestros", idAcademia);
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }finally{
-            if(conn!=null){
+            throw ex;
+        } finally {
+            if (conn != null) {
                 conn.close();
             }
         }

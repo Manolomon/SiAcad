@@ -31,6 +31,11 @@ public class AsistenteAReunionController implements Initializable {
   @FXML
   private Label labelEE;
 
+  public void  llenarDatosAsistente(String nombreMaestro) {
+    labelNombreMaestro.setText(nombreMaestro);
+    //labelEE.setText(nombreEE);
+  }
+  
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     // TODO

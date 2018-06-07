@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="800.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AsistenteAReunionController">
    <children>
-      <JFXCheckBox fx:id="checkAsistencia" alignment="CENTER" checkedColor="#d4218d" contentDisplay="GRAPHIC_ONLY" graphicTextGap="5.0" layoutX="44.0" layoutY="46.0" prefHeight="18.0" prefWidth="18.0" scaleX="1.5" scaleY="1.5">
+      <JFXCheckBox fx:id="checkAsistencia" accessibleText="Asistiendo" alignment="CENTER" checkedColor="#d4218d" contentDisplay="GRAPHIC_ONLY" graphicTextGap="5.0" layoutX="44.0" layoutY="46.0" prefHeight="18.0" prefWidth="18.0" scaleX="1.5" scaleY="1.5">
          <font>
             <Font size="1.0" />
          </font>
@@ -17,7 +17,7 @@
             <Font name="System Bold" size="27.0" />
          </font>
       </Label>
-      <Label fx:id="labelEE" layoutX="115.0" layoutY="58.0" prefHeight="21.0" prefWidth="685.0" text="Experiencia Educativa que lo hace parte de la Academia" textFill="#999999" />
+      <Label fx:id="labelEE" layoutX="115.0" layoutY="58.0" prefHeight="21.0" prefWidth="685.0" text="Experiencia Educativa que lo hace parte de la Academia" textFill="#999999" visible="false" />
       <AnchorPane layoutY="110.0" prefHeight="1.0" prefWidth="800.0" style="-fx-background-color: #FAFAFA;" />
    </children>
 </AnchorPane>
