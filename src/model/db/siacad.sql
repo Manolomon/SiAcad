@@ -124,12 +124,19 @@ CREATE TABLE Tema (
     FOREIGN KEY (idEEPlanTrabajo) REFERENCES EEPlanTrabajo(idEEPlanTrabajo)
 );
 
+CREATE TABLE Bibliografia (
+    idBibliografia int NOT NULL auto_increment,
+    titulo varchar(150),
+    autor varchar(200),
+    idPlanDeCurso
+    PRIMARY KEY (idBibliografia)
+);
+
 CREATE TABLE PlanDeCurso (
     idPlanDeCurso int NOT NULL auto_increment,
     formato varchar(50),
     objetivoGeneral varchar(1000),
     fecha Date,
-    bibliografia varchar(3000),
     idCurso int,
     PRIMARY KEY (idPlanDeCurso),
     FOREIGN KEY (idCurso) REFERENCES Curso(idCurso)
@@ -137,21 +144,21 @@ CREATE TABLE PlanDeCurso (
 
 CREATE TABLE Evaluacion (
     idEvaluacion int NOT NULL auto_increment,
-    unidad int,
-    fechas varchar(100),
-    practicas varchar(1000),
-    tecnicasDidacticas varchar(500),
-    temas varchar(1000),
-    idPlanDeTrabajo int,
+    porcentaje int,
+    instrumento varchar(150),
+    idEEPlanTrabajo int,
     PRIMARY KEY (idEvaluacion),
-    FOREIGN KEY (idPlanDeTrabajo) REFERENCES PlanDeTrabajo(idPlanDeTrabajo)
+    FOREIGN KEY (idEEPlanTrabajo) REFERENCES EEPlanTrabajo(idEEPlanTrabajo)
 );
 
-CREATE TABLE Evaluacion_PlanDeCurso (
-    idEvaluacion int NOT NULL,
-    idPlanDeCurso int NOT NULL,
-    PRIMARY KEY (idEvaluacion, idPlanDeCurso),
-    FOREIGN KEY (idEvaluacion) REFERENCES Evaluacion(idEvaluacion),
+CREATE TABLE Evaluacion_PlanCurso (
+    idEvaluacionP int NOT NULL auto_increment,
+    unidad int,
+    criterioDeEvaluacion varchar(150)
+    porcentaje int,
+    fechas varchar(150),
+    idPlanDeCurso int,
+    PRIMARY KEY (idEvaluacionP),
     FOREIGN KEY (idPlanDeCurso) REFERENCES PlanDeCurso(idPlanDeCurso)
 );
 

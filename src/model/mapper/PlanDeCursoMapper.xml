@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         FROM participantes_minuta pm
         LEFT OUTER JOIN maestro m ON m.idUsuarioAcademico = pm.idMaestro
         LEFT OUTER JOIN usuarioacademico u ON u.idUsuarioAcademico = m.idUsuarioAcademico
-        WHERE pm.idMinutaDeAcademia = #{idMinutaDeAcademia}
+        WHERE idMinutaDeAcademia = #{idMinutaDeAcademia}
     </select>
     
     <insert id="guardarParticipante" parameterType="model.pojos.Participante">
@@ -22,8 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
     
     <insert id="guardarMinuta" parameterType="model.pojos.MinutaDeAcademia">
-        INSERT INTO minutadeacademia (idReunion,fecha,hora,objetivo,temas,conclusiones)
-        VALUES(#{idReunion},#{fecha},#{hora},#{objetivo},#{temas},#{conclusiones})
+        INSERT INTO minutadeacademia (fecha,hora,objetivo,temas,conclusiones)
+        VALUES(#{fecha},#{hora},#{objetivo},#{temas},#{conclusiones})
     </insert>
 </mapper>
 

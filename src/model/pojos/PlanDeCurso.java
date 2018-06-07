@@ -11,19 +11,16 @@ public class PlanDeCurso {
   private String formato;
   private String objetivoGeneral;
   private Date fecha;
-  private String bibliografia;
   private Integer idCurso;
 
   public PlanDeCurso() {
   }
 
-  public PlanDeCurso(Integer idPlanDeCurso, String formato, String objetivoGeneral, Date fecha, String bibliografia,
-      Integer idCurso) {
+  public PlanDeCurso(Integer idPlanDeCurso, String formato, String objetivoGeneral, Date fecha,Integer idCurso) {
     this.idPlanDeCurso = idPlanDeCurso;
     this.formato = formato;
     this.objetivoGeneral = objetivoGeneral;
     this.fecha = fecha;
-    this.bibliografia = bibliografia;
     this.idCurso = idCurso;
   }
 
@@ -57,14 +54,6 @@ public class PlanDeCurso {
 
   public void setFecha(Date fecha) {
     this.fecha = fecha;
-  }
-
-  public String getBibliografia() {
-    return bibliografia;
-  }
-
-  public void setBibliografia(String bibliografia) {
-    this.bibliografia = bibliografia;
   }
 
   public Integer getIdCurso() {
