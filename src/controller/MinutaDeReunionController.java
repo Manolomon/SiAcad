@@ -97,27 +97,28 @@ public class MinutaDeReunionController implements Initializable {
 
   @FXML
   public void clickEnviar(ActionEvent event) {
-    ObservableList <AnchorPane> listaParticipantes = listParticipantes.getItems();
+    ObservableList<AnchorPane> listaParticipantes = listParticipantes.getItems();
     int contador = 0;
     for (AnchorPane part : listaParticipantes) {
-        for (Node node : part.getChildren()) {
-            if("Asistiendo".equals(node.getAccessibleText())){
-                if(((JFXCheckBox)node).isSelected()){
-                    asistentes.add(participantes.get(contador));
-                    System.out.println("Vino: " + participantes.get(contador).getNombre());
-                }
-            }
+      for (Node node : part.getChildren()) {
+        if ("Asistiendo".equals(node.getAccessibleText())) {
+          if (((JFXCheckBox) node).isSelected()) {
+            asistentes.add(participantes.get(contador));
+            System.out.println("Vino: " + participantes.get(contador).getNombre());
+          }
         }
-        contador++;
+      }
+      contador++;
     }
-    if(!camposInvalidos()) {
-      if(!asistentes.isEmpty()) {
+    if (!camposInvalidos()) {
+      if (!asistentes.isEmpty()) {
         Integer idReunion = cmbReunion.getSelectionModel().getSelectedItem().getIdReunion();
         java.util.Date fecha = new java.util.Date();
         java.sql.Date sDate = new java.sql.Date(fecha.getTime());
-        MinutaDeAcademia minuta = new MinutaDeAcademia(idReunion, sDate, "hora", txtObjetivo.getText(), txtTemas.getText(), txtConclusiones.getText()); 
-        if(MinutaDeAcademiaDAO.guardarMinuta(minuta)){
-          for(Maestro asistente : asistentes) {
+        MinutaDeAcademia minuta = new MinutaDeAcademia(idReunion, sDate, "hora", txtObjetivo.getText(),
+            txtTemas.getText(), txtConclusiones.getText());
+        if (MinutaDeAcademiaDAO.guardarMinuta(minuta)) {
+          for (Maestro asistente : asistentes) {
             MinutaDeAcademiaDAO.guardarParticipante(new Participante(idReunion, asistente.getIdUsuarioAcademico()));
           }
           mensaje("Enviado", "Minuta almacenada en la Base de Datos");
@@ -160,7 +161,7 @@ public class MinutaDeReunionController implements Initializable {
   }
 
   public boolean camposInvalidos() {
-      System.out.println("Comprobandooou");
+    System.out.println("Comprobandooou");
     return txtConclusiones.getText().isEmpty() || txtObjetivo.getText().isEmpty() || txtTemas.getText().isEmpty();
   }
 
@@ -223,7 +224,7 @@ public class MinutaDeReunionController implements Initializable {
   }
 
   /**
-   * Inicialización y muestra de un JFXDialog al centro de la pantalla,  mandando
+   * Inicialización y muestra de un JFXDialog al centro de la pantalla, mandando
    * una advertencia a alguna operación
    * 
    * @param head Título del dialog

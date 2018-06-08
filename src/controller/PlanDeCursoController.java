@@ -23,6 +23,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.pojos.Evaluacion_PlanCurso;
+import model.pojos.Planeacion;
 
 /**
  * @author Manolo Pérez
@@ -51,43 +53,40 @@ public class PlanDeCursoController implements Initializable {
   private JFXButton btnGuardar;
 
   @FXML
-  private JFXTreeTableView<?> tablePlaneacion;
-
-  @FXML
-  private JFXTreeTableColumn<?, ?> planeacionUnidad;
-
-  @FXML
-  private JFXTreeTableColumn<?, ?> planeacionTemas;
-
-  @FXML
-  private JFXTreeTableColumn<?, ?> planeacionFechas;
-
-  @FXML
-  private JFXTreeTableColumn<?, ?> planeacionTareas;
-
-  @FXML
-  private JFXTreeTableColumn<?, ?> planeacionTecnica;
-
-  @FXML
   private JFXButton btnMenosPlaneacion;
 
   @FXML
   private JFXButton btnMasPlaneacion;
 
   @FXML
+  private JFXTreeTableColumn<Planeacion, String> planeacionUnidad;
+
+  @FXML
+  private JFXTreeTableColumn<Planeacion, String> planeacionTemas;
+
+  @FXML
+  private JFXTreeTableColumn<Planeacion, String> planeacionFechas;
+
+  @FXML
+  private JFXTreeTableColumn<Planeacion, String> planeacionTareas;
+
+  @FXML
+  private JFXTreeTableColumn<Planeacion, String> planeacionTecnicas;
+
+  @FXML
   private JFXTreeTableView<?> editableTreeTableView1;
 
   @FXML
-  private JFXTreeTableColumn<?, ?> bibliografiaAutor;
+  private JFXTreeTableColumn<Bibliografia, String> bibliografiaAutor;
 
   @FXML
-  private JFXTreeTableColumn<?, ?> bibliografiaTitulo;
+  private JFXTreeTableColumn<Bibliografia, String> bibliografiaTitulo;
 
   @FXML
-  private JFXTreeTableColumn<?, ?> bibliografiaEditorial;
+  private JFXTreeTableColumn<Bibliografia, String> bibliografiaEditorial;
 
   @FXML
-  private JFXTreeTableColumn<?, ?> biblioYear;
+  private JFXTreeTableColumn<Bibliografia, String> biblioYear;
 
   @FXML
   private JFXButton btnMenosBibliografia;
@@ -99,19 +98,19 @@ public class PlanDeCursoController implements Initializable {
   private JFXTreeTableView<?> editableTreeTableView2;
 
   @FXML
-  private JFXTreeTableColumn<?, ?> calendarioUnidad;
+  private JFXTreeTableColumn<Evaluacion_PlanCurso, String> calendarioUnidad1;
 
   @FXML
-  private JFXTreeTableColumn<?, ?> calendarioFechas;
+  private JFXTreeTableColumn<Evaluacion_PlanCurso, String> calendarioFechas;
 
   @FXML
-  private JFXTreeTableColumn<?, ?> calendarioCriterio;
+  private JFXTreeTableColumn<Evaluacion_PlanCurso, String> calendarioCriterio;
 
   @FXML
-  private JFXTreeTableColumn<?, ?> calendarioInstrumento;
+  private JFXTreeTableColumn<Evaluacion_PlanCurso, String> calendarioInstrumento;
 
   @FXML
-  private JFXTreeTableColumn<?, ?> calendarioPorcentage;
+  private JFXTreeTableColumn<Evaluacion_PlanCurso, String> calendarioPorcentage;
 
   @FXML
   private JFXButton btnMasCalendario;

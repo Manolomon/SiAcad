@@ -17,6 +17,11 @@ public class UsuarioAcademico {
   public UsuarioAcademico() {
   }
 
+  public UsuarioAcademico(String username, String contrasena){
+    this.username = username;
+    this.contrasena = contrasena;
+  }
+
   public UsuarioAcademico(Integer idUsuarioAcademico, String nombre, String apellidos, String correo, String telefono,
       String username, String contrasena, Integer idRol) {
     this.idUsuarioAcademico = idUsuarioAcademico;

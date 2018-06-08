@@ -12,16 +12,16 @@
 
 USE SiAcad;
 
-INSERT INTO rol VALUES (null,"Rol 1");
-INSERT INTO rol VALUES (null,"Rol 2");
+INSERT INTO rol VALUES (null,"Maestro");
+INSERT INTO rol VALUES (null,"Coordinador de Academia");
 
 INSERT INTO tipo VALUES (null,"Medio tiempo");
-INSERT INTO tipo VALUES (null,"tiempo completo");
-INSERT INTO tipo VALUES (null,"de los que no hacen nada");
+INSERT INTO tipo VALUES (null,"Tiempo completo");
+INSERT INTO tipo VALUES (null,"De los que no hacen nada");
 
-INSERT INTO usuarioacademico VALUES (1, "Manolo","Perez V","ElQueNoPelea@tugfa.com","2288225566","Manolomon","mani",2);
-INSERT INTO usuarioacademico VALUES (2, "Charly","Carrillo C","ElQueJuegFut@tugfa.com","2282318482","Charly","fuck",1);
-INSERT INTO usuarioacademico VALUES (3, "Daniel","Escamilla C","JuegoLOL@tugfa.com","2283213513","Escamilla","lol",2);
+INSERT INTO usuarioacademico VALUES (1, "Manolo","Perez Verdejo","ElQueNoPelea@tugfa.com","2288225566","Manolomon","mani",2);
+INSERT INTO usuarioacademico VALUES (2, "Charly","Carrillo Ceballos","ElQueJuegFut@tugfa.com","2282318482","Charly","fuck",1);
+INSERT INTO usuarioacademico VALUES (3, "Daniel","Escamilla Cortes","JuegoLOL@tugfa.com","2283213513","Escamilla","lol",2);
 
 INSERT INTO maestro VALUES (1,"123456", 1);
 INSERT INTO maestro VALUES (2,"654321", 2);
