@@ -15,14 +15,20 @@ import com.jfoenix.controls.JFXTreeTableView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.pojos.Bibliografia;
 import model.pojos.Evaluacion_PlanCurso;
 import model.pojos.Planeacion;
 
@@ -35,88 +41,85 @@ import model.pojos.Planeacion;
 public class PlanDeCursoController implements Initializable {
 
   @FXML
-  private StackPane rootPane;
+    private StackPane rootPane;
 
-  @FXML
-  private AnchorPane panelTopBar;
+    @FXML
+    private AnchorPane panelTopBar;
 
-  @FXML
-  private JFXButton btnHamburger;
+    @FXML
+    private JFXButton btnHamburger;
 
-  @FXML
-  private JFXComboBox<?> cmbCurso;
+    @FXML
+    private JFXComboBox<?> cmbCurso;
 
-  @FXML
-  private JFXButton btnEnviar;
+    @FXML
+    private JFXButton btnEnviar;
 
-  @FXML
-  private JFXButton btnGuardar;
+    @FXML
+    private JFXButton btnGuardar;
 
-  @FXML
-  private JFXButton btnMenosPlaneacion;
+    @FXML
+    private JFXButton btnMenosPlaneacion;
 
-  @FXML
-  private JFXButton btnMasPlaneacion;
+    @FXML
+    private JFXButton btnMasPlaneacion;
 
-  @FXML
-  private JFXTreeTableColumn<Planeacion, String> planeacionUnidad;
+    @FXML
+    private TableView<Planeacion> tablePlaneacion;
 
-  @FXML
-  private JFXTreeTableColumn<Planeacion, String> planeacionTemas;
+    @FXML
+    private TableColumn<Planeacion, Integer> planeacionUnidad;
 
-  @FXML
-  private JFXTreeTableColumn<Planeacion, String> planeacionFechas;
+    @FXML
+    private TableColumn<Planeacion, String> planeacionTemas;
 
-  @FXML
-  private JFXTreeTableColumn<Planeacion, String> planeacionTareas;
+    @FXML
+    private TableColumn<Planeacion, String> planeacionFechas;
 
-  @FXML
-  private JFXTreeTableColumn<Planeacion, String> planeacionTecnicas;
+    @FXML
+    private TableColumn<Planeacion, String> planeacionTecnicas;
 
-  @FXML
-  private JFXTreeTableView<?> editableTreeTableView1;
+    @FXML
+    private JFXTreeTableView<?> tableBibliografia;
 
-  @FXML
-  private JFXTreeTableColumn<Bibliografia, String> bibliografiaAutor;
+    @FXML
+    private JFXTreeTableColumn<Bibliografia, String> bibliografiaAutor;
 
-  @FXML
-  private JFXTreeTableColumn<Bibliografia, String> bibliografiaTitulo;
+    @FXML
+    private JFXTreeTableColumn<Bibliografia, String> bibliografiaTitulo;
 
-  @FXML
-  private JFXTreeTableColumn<Bibliografia, String> bibliografiaEditorial;
+    @FXML
+    private JFXTreeTableColumn<Bibliografia, String> bibliografiaEditorial;
 
-  @FXML
-  private JFXTreeTableColumn<Bibliografia, String> biblioYear;
+    @FXML
+    private JFXTreeTableColumn<Bibliografia, Integer> biblioYear;
 
-  @FXML
-  private JFXButton btnMenosBibliografia;
+    @FXML
+    private JFXButton btnMenosBibliografia;
 
-  @FXML
-  private JFXButton btnMasBibliografia;
+    @FXML
+    private JFXButton btnMasBibliografia;
 
-  @FXML
-  private JFXTreeTableView<?> editableTreeTableView2;
+    @FXML
+    private JFXTreeTableView<?> tableCalendario;
 
-  @FXML
-  private JFXTreeTableColumn<Evaluacion_PlanCurso, String> calendarioUnidad1;
+    @FXML
+    private JFXTreeTableColumn<Evaluacion_PlanCurso, Integer> calendarioUnidad1;
 
-  @FXML
-  private JFXTreeTableColumn<Evaluacion_PlanCurso, String> calendarioFechas;
+    @FXML
+    private JFXTreeTableColumn<Evaluacion_PlanCurso, String> calendarioFechas;
 
-  @FXML
-  private JFXTreeTableColumn<Evaluacion_PlanCurso, String> calendarioCriterio;
+    @FXML
+    private JFXTreeTableColumn<Evaluacion_PlanCurso, String> calendarioCriterio;
 
-  @FXML
-  private JFXTreeTableColumn<Evaluacion_PlanCurso, String> calendarioInstrumento;
+    @FXML
+    private JFXTreeTableColumn<Evaluacion_PlanCurso, String> calendarioPorcentage;
 
-  @FXML
-  private JFXTreeTableColumn<Evaluacion_PlanCurso, String> calendarioPorcentage;
+    @FXML
+    private JFXButton btnMasCalendario;
 
-  @FXML
-  private JFXButton btnMasCalendario;
-
-  @FXML
-  private JFXTextArea txtObjetivo;
+    @FXML
+    private JFXTextArea txtObjetivo;
 
   @FXML
   public void clickEnviar(ActionEvent event) {
@@ -164,6 +167,13 @@ public class PlanDeCursoController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
+     planeacionUnidad.setCellValueFactory(new PropertyValueFactory<>("unidad"));
+     planeacionTemas.setCellValueFactory(new PropertyValueFactory<>("temas"));
+     planeacionFechas.setCellValueFactory(new PropertyValueFactory<>("fechas"));
+     planeacionTecnicas.setCellValueFactory(new PropertyValueFactory<>("tecnicasDidacticas"));
+     ObservableList<Planeacion> p = FXCollections.observableArrayList();
+     p.add(new Planeacion("", "", 0, ""));
+     tablePlaneacion.getItems();
   }
 
 }

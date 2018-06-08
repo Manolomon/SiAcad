@@ -15,6 +15,8 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -69,10 +71,10 @@ public class InicioController implements Initializable {
     try {
       loader.load();
     } catch (IOException ex) {
-      Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
     }
-    FXMLVistaCursosController display = loader.getController();
-    display.cargarUsuario(user);
+    DashboardController display = loader.getController();
+    //display.cargarUsuario(this.usuario);
     StackPane vistaCursos = loader.getRoot();
     Scene newScene = new Scene(vistaCursos);
     Stage curStage = (Stage) rootPane.getScene().getWindow();

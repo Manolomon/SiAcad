@@ -6,6 +6,8 @@
 <?import com.jfoenix.controls.JFXTreeTableColumn?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -72,15 +74,14 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXTreeTableView editable="true" layoutX="14.0" layoutY="58.0" prefHeight="445.0" prefWidth="1049.0">
-                     <columns>
-                        <JFXTreeTableColumn fx:id="planeacionUnidad" minWidth="133" prefWidth="160.0" resizable="false" sortable="false" text="Unidad" />
-                        <JFXTreeTableColumn fx:id="planeacionTemas" minWidth="133" prefWidth="270.0" resizable="false" sortable="false" text="Temas" />
-                        <JFXTreeTableColumn fx:id="planeacionFechas" minWidth="133" prefWidth="150.0" resizable="false" sortable="false" text="Fechas" />
-                        <JFXTreeTableColumn fx:id="planeacionTareas" minWidth="133" prefWidth="230.0" resizable="false" sortable="false" text="Tareas y Prácticas" />
-                        <JFXTreeTableColumn fx:id="planeacionTecnicas" minWidth="133" prefWidth="240.0" resizable="false" sortable="false" text="Técnicas Didáctica" />
-                     </columns>
-                  </JFXTreeTableView>
+                  <TableView fx:id="tablePlaneacion" editable="true" layoutX="14.0" layoutY="50.0" prefHeight="452.0" prefWidth="1045.0">
+                    <columns>
+                      <TableColumn fx:id="planeacionUnidad" prefWidth="75.0" text="C1" />
+                      <TableColumn fx:id="planeacionTemas" prefWidth="75.0" text="C2" />
+                        <TableColumn fx:id="planeacionFechas" prefWidth="75.0" text="Column X" />
+                        <TableColumn fx:id="planeacionTecnicas" prefWidth="75.0" text="Column X" />
+                    </columns>
+                  </TableView>
                </children>
                <effect>
                   <DropShadow color="#000000a1" />
@@ -93,7 +94,7 @@
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <JFXTreeTableView fx:id="editableTreeTableView1" layoutX="11.0" layoutY="59.0" prefHeight="434.0" prefWidth="696.0">
+                  <JFXTreeTableView fx:id="tableBibliografia" layoutX="11.0" layoutY="59.0" prefHeight="434.0" prefWidth="696.0">
                      <columns>
                         <JFXTreeTableColumn fx:id="bibliografiaAutor" minWidth="133" prefWidth="160.0" resizable="false" sortable="false" text="Autor(es)" />
                         <JFXTreeTableColumn fx:id="bibliografiaTitulo" minWidth="160.0" prefWidth="270.0" resizable="false" sortable="false" text="Título del libro" />
@@ -126,13 +127,12 @@
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <JFXTreeTableView fx:id="editableTreeTableView2" layoutX="11.0" layoutY="59.0" prefHeight="242.0" prefWidth="1061.0">
+                  <JFXTreeTableView fx:id="tableCalendario" layoutX="11.0" layoutY="59.0" prefHeight="242.0" prefWidth="1061.0">
                      <columns>
                         <JFXTreeTableColumn fx:id="calendarioUnidad1" minWidth="133" prefWidth="160.0" resizable="false" sortable="false" text="Unidad" />
-                        <JFXTreeTableColumn fx:id="calendarioFechas" minWidth="160.0" prefWidth="140.0" resizable="false" sortable="false" text="Fechas" />
-                        <JFXTreeTableColumn fx:id="calendarioCriterio" minWidth="133.0" prefWidth="350.0" resizable="false" sortable="false" text="Criterio de Evaluación" />
-                        <JFXTreeTableColumn fx:id="calendarioInstrumento" minWidth="133" prefWidth="260.0" resizable="false" sortable="false" text="Instrumento" />
-                        <JFXTreeTableColumn fx:id="calendarioPorcentage" minWidth="133" prefWidth="50.0" resizable="false" sortable="false" text="Porcentaje %" />
+                        <JFXTreeTableColumn fx:id="calendarioFechas" minWidth="160.0" prefWidth="250.0" resizable="false" sortable="false" text="Fechas" />
+                        <JFXTreeTableColumn fx:id="calendarioCriterio" minWidth="133.0" prefWidth="400.0" resizable="false" sortable="false" text="Criterio de Evaluación" />
+                        <JFXTreeTableColumn fx:id="calendarioPorcentage" minWidth="133" prefWidth="250.0" resizable="false" sortable="false" text="Porcentaje %" />
                      </columns>
                      <columnResizePolicy>
                         <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

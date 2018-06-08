@@ -25,6 +25,13 @@ public class Planeacion {
     this.idPlanDeCurso = idPlanDeCurso;
   }
 
+  public Planeacion(String fechas, String temas, Integer unidad, String tecnicasDidacticas) {
+    this.fechas = fechas;
+    this.temas = temas;
+    this.unidad = unidad;
+    this.tecnicasDidacticas = tecnicasDidacticas;
+  }
+
   public Integer getIdPlaneacion() {
     return idPlaneacion;
   }
