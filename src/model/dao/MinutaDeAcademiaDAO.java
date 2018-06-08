@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * DAO para las consultas necesarias para la Minuta de Academia
+ * @author Daniel Escamilla Cortes
  */
 package model.dao;
 
@@ -14,6 +13,11 @@ import model.pojos.MinutaDeAcademia;
 import org.apache.ibatis.session.SqlSession;
 
 public class MinutaDeAcademiaDAO {
+    /**
+     * Obtiene una minuta en especifico con base a la id
+     * @param idMinuta
+     * @return minuta
+     */
     public static MinutaDeAcademia obtenerMinuta(Integer idMinuta) {
         MinutaDeAcademia minuta = new MinutaDeAcademia();
         SqlSession conn = null;
@@ -30,6 +34,11 @@ public class MinutaDeAcademiaDAO {
         return minuta;
     }
 
+    /**
+     * Obtener los maestros participantes de una minuta
+     * @param idMinuta
+     * @return maestros
+     */
     public static List<Maestro> obtenerParticipantes(Integer idMinuta) {
         List<Maestro> lista = new ArrayList<Maestro>();
         SqlSession conn = null;
@@ -46,6 +55,11 @@ public class MinutaDeAcademiaDAO {
         return lista;
     }
 
+    /**
+     * Guardar un participante de la minuta
+     * @param participante relacion entre maestro y minuta
+     * @return true si la consulta fue correcta
+     */
     public static boolean guardarParticipante(Participante participante) {
         SqlSession conn = null;
         try {
@@ -63,6 +77,11 @@ public class MinutaDeAcademiaDAO {
         return false;
     }
 
+    /**
+     * Guarda la minuta de academia
+     * @param minuta 
+     * @return true si la consulta fue correcta
+     */
     public static boolean guardarMinuta(MinutaDeAcademia minuta) {
         SqlSession conn = null;
         try {

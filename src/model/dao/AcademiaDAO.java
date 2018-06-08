@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * DAO Para las consultas necesarias de la Academia
+ * @author Daniel Escamilla Cortes y Jose Manuel Perez Verdejo
  */
 package model.dao;
 
@@ -16,6 +15,10 @@ import model.pojos.Reunion;
 import org.apache.ibatis.session.SqlSession;
 
 public class AcademiaDAO {
+    /**
+     * Obtiene todas las Academias existentes
+     * @return academias
+     */
     public static List<Academia> obtenerAcademias() {
         List<Academia> lista = new ArrayList<Academia>();
         SqlSession conn = null;
@@ -32,6 +35,11 @@ public class AcademiaDAO {
         return lista;
     }
 
+    /**
+     * Obtiene una academia en especifico con base al id
+     * @param idAcademia id de la academia a recuperar
+     * @return academia
+     */
     public static Academia obtenerAcademiaId(Integer idAcademia) {//throws Exception{
         Academia lista = null;
         SqlSession conn = null;
@@ -49,12 +57,17 @@ public class AcademiaDAO {
         return lista;
     }
 
-    public static List<ExperienciaEducativa> obtenerExperienciasEducativas() {
+    /**
+     * Obtener todas las experiencias educativas de una academia
+     * @param idAcademia id de la academia
+     * @return experiencias educativas
+     */
+    public static List<ExperienciaEducativa> obtenerExperienciasEducativas(Integer idAcademia) {
         List<ExperienciaEducativa> lista = new ArrayList<ExperienciaEducativa>();
         SqlSession conn = null;
         try {
             conn = MyBatisUtils.getSession();
-            lista = conn.selectList("Academia.obtenerExperienciasEducativas");
+            lista = conn.selectList("Academia.obtenerExperienciasEducativas", idAcademia);
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -65,6 +78,12 @@ public class AcademiaDAO {
         return lista;
     }
 
+    /**
+     * Obtiene todas las reuniones de una academia
+     * @param academia
+     * @return reuniones
+     * @throws Exception si la consulta es incorrecta 
+     */
     public static List<Reunion> obtenerReuniones(Academia academia) throws Exception{
         List<Reunion> lista = new ArrayList<Reunion>();
         SqlSession conn = null;
@@ -83,6 +102,11 @@ public class AcademiaDAO {
         return lista;
     }
 
+    /**
+     * Guarda la Academia
+     * @param nombreAcademia
+     * @return true si la consulta fue correcta
+     */
     public static boolean guardarAcademia(String nombreAcademia) {
         SqlSession conn = null;
         try {
@@ -100,6 +124,11 @@ public class AcademiaDAO {
         return false;
     }
 
+    /**
+     * Elimina una academia en especifico
+     * @param id de la academia a eliminar
+     * @return true si la consulta fue correcta
+     */
     public static boolean eliminarAcademia(Integer id) {
         SqlSession conn = null;
         try {
@@ -117,6 +146,12 @@ public class AcademiaDAO {
         return false;
     }
 
+    /**
+     * Obtiene los maestros pertenecientes a una academia
+     * @param idAcademia
+     * @return maestros
+     * @throws Exception si la consulta es incorrecta 
+     */
     public static List<Maestro> obtenerMaestros(Integer idAcademia) throws Exception{
         List<Maestro> lista = new ArrayList<Maestro>();
         SqlSession conn = null;

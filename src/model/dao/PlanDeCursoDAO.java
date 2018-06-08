@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * DAO Para las consultas necesarias para el Plan de Curso
+ * @author Daniel Escamilla Cortes
  */
 package model.dao;
 
@@ -17,6 +16,11 @@ import model.pojos.Planeacion;
 import org.apache.ibatis.session.SqlSession;
 
 public class PlanDeCursoDAO {
+    /**
+     * Obtener un plan de curso en especifico
+     * @param idCurso curso del cual sacar el plan de curso
+     * @return plan de curso
+     */
     public static PlanDeCurso obtenerPlanDeCurso(Integer idCurso) {
         PlanDeCurso plan = new PlanDeCurso();
         SqlSession conn = null;
@@ -33,6 +37,11 @@ public class PlanDeCursoDAO {
         return plan;
     }
 
+    /**
+     * Obtener las evaluaciones base obtenidas con base al Plan de Trabajo de la Academia perteneciente
+     * @param idCurso id del curso del cual se esta creando el plan de curso
+     * @return evaluaciones
+     */
     public static List<Evaluacion> obtenerEvaluacionesDePlanDeTrabajo(Integer idCurso) {
         List<Evaluacion> lista = new ArrayList<Evaluacion>();
         SqlSession conn = null;
@@ -49,6 +58,11 @@ public class PlanDeCursoDAO {
         return lista;
     }
     
+    /**
+     * Obtener todos los cursos de un determinado maestro
+     * @param idMaestro id del maestro
+     * @return cursos del maestro
+     */
     public static List<Curso> obtenerCursoesDeMaestro(Integer idMaestro) {
         List<Curso> lista = new ArrayList<Curso>();
         SqlSession conn = null;
@@ -65,6 +79,11 @@ public class PlanDeCursoDAO {
         return lista;
     }
 
+    /**
+     * Obtener las evaluaciones de un Plan de Curso
+     * @param idPlanDeCurso id del plan de curso
+     * @return evaluaciones
+     */
     public static List<Evaluacion_PlanCurso> obtenerEvaluaciones(Integer idPlanDeCurso) {
         List<Evaluacion_PlanCurso> lista = new ArrayList<Evaluacion_PlanCurso>();
         SqlSession conn = null;
@@ -81,6 +100,11 @@ public class PlanDeCursoDAO {
         return lista;
     }
     
+    /**
+     * Obtener las planeaciones de un Plan de Curso
+     * @param idPlanDeCurso id del plan de curso
+     * @return planeaciones
+     */
     public static List<Planeacion> obtenerPlaneaciones(Integer idPlanDeCurso) {
         List<Planeacion> lista = new ArrayList<Planeacion>();
         SqlSession conn = null;
@@ -97,6 +121,11 @@ public class PlanDeCursoDAO {
         return lista;
     }
     
+    /**
+     * Obtener las bibliografias de un Plan de Curso
+     * @param idPlanDeCurso id del plan de curso
+     * @return bibliografias
+     */
     public static List<Bibliografia> obtenerBibliografias(Integer idPlanDeCurso) {
         List<Bibliografia> lista = new ArrayList<Bibliografia>();
         SqlSession conn = null;
@@ -113,6 +142,11 @@ public class PlanDeCursoDAO {
         return lista;
     }
     
+    /**
+     * Guarda un objeto planeacion en la BD
+     * @param planeacion
+     * @return true si la consulta fue correcta
+     */
     public static boolean guardarPlaneacion(Planeacion planeacion) {
         SqlSession conn = null;
         try {
@@ -130,6 +164,11 @@ public class PlanDeCursoDAO {
         return false;
     }
     
+    /**
+     * Guarda un objeto bibliografia en la BD
+     * @param bib bibliografia a guardar
+     * @return true si la consulta fue correcta
+     */
     public static boolean guardarBibliografia(Bibliografia bib) {
         SqlSession conn = null;
         try {
@@ -147,6 +186,11 @@ public class PlanDeCursoDAO {
         return false;
     }
 
+    /**
+     * Guarda un objeto evaluacion en la BD
+     * @param evaluacion
+     * @return true si la consulta fue correcta
+     */
     public static boolean guardarEvaluacion(Evaluacion evaluacion) {
         SqlSession conn = null;
         try {
@@ -164,6 +208,11 @@ public class PlanDeCursoDAO {
         return false;
     }
     
+    /**
+     * Guarda el Plan de Curso en la BD
+     * @param plan plan de curso a guardar
+     * @return true si la consulta fue correcta
+     */
     public static boolean guardarPlanDeCurso(PlanDeCurso plan) {
         SqlSession conn = null;
         try {
