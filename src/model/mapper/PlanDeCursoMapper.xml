@@ -36,9 +36,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM planeacion WHERE idPlanDeCurso = #{idPlanDeCurso}
     </select>
     
+    <select id="obtenerBibliografias" resultType="model.pojos.Bibliografia" parameterType="Integer">
+        SELECT * FROM bibliografia WHERE idPlanDeCurso = #{idPlanDeCurso}
+    </select>
+    
     <insert id="guardarPlaneaciones" parameterType="model.pojos.Planeacion">
         INSERT INTO planeacion (fechas, temas, unidad, tecnicasDidacticas, idPlanDeCurso)
         VALUES(#{fechas},#{temas},#{unidad},#{tecnicasDidacticas},#{idPlanDeCurso})
+    </insert>
+    
+    <insert id="guardarBibliografias" parameterType="model.pojos.Bibliografia">
+        INSERT INTO bibliografia (titulo,autor,editorial,anio,idPlanDeCurso)
+        VALUES(#{titulo},#{autor},#{editorial},#{anio},#{idPlanDeCurso})
     </insert>
     
     <insert id="guardarEvaluaciones" parameterType="model.pojos.Evaluacion_PlanCurso">

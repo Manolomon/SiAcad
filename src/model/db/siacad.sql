@@ -138,6 +138,8 @@ CREATE TABLE Bibliografia (
     idBibliografia int NOT NULL auto_increment,
     titulo varchar(150),
     autor varchar(200),
+    editorial varchar(100),
+    año int,
     idPlanDeCurso int NOT NULL,
     PRIMARY KEY (idBibliografia),
     FOREIGN KEY (idPlanDeCurso) REFERENCES PlanDeCurso (idPlanDeCurso)
