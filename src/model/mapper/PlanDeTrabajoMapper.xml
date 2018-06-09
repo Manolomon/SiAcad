@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PlanDeTrabajo">
+    <select id="obtenerPlanDeTrabajo" resultType="model.pojos.PlanDeTrabajo" parameterType="Integer">
+        SELECT pt.idPlanDeTrabajo, pt.formato,pt.fechaAprobacion,pt.objetivoGeneral,pt.programaEducativo 
+        FROM plandetrabajo
+        INNER JOIN periodoa pa ON pa.idPlanDeTrabajo = pt.idPlanDeTrabajo 
+        WHERE pa.idAcademia = #{idAcademia)
+    </select>
+        
+    <select id="obtenerObjetivosParticulares" resultType="model.pojos.ObjetivoParticular" parameterType="Integer">
+        SELECT * FROM objetivoparticular WHERE idPlanDeTrabajo = #{idPlanDeTrabajo}
+    </select>
+    
+    <select id="obtenerActividades" resultType="model.pojos.Actividad" parameterType="Integer">
+        SELECT * FROM actividad WHERE idObjetivoPartciular = #{idObjetivoPartciular}
+    </select>
+    
+    <select id="obtenerEEPlanDeTrabajo" resultType="model.pojos.EEPlanTrabajo" parameterType="Integer">
+        SELECT * FROM eeplantrabajo WHERE idPlanDeTrabajo = #{idPlanDeTrabajo}
+    </select>
+    
+    <select id="obtenerEvaluaciones" resultType="model.pojos.Evaluacion" parameterType="Integer">
+        SELECT * FROM evaluacion WHERE idEEPlanTrabajo = #{idEEPlanTrabajo}
+    </select>
+    
+    <select id="obtenerTemas" resultType="model.pojos.Tema" parameterType="Integer">
+        SELECT * FROM tema WHERE idEEPlanTrabajo = #{idEEPlanTrabajo}
+    </select>
+    
+    <select id="obtenerParticipantes" resultType="model.pojos.Maestro" parameterType="Integer">
+        SELECT u.idUsuarioAcademico, u.nombre, u.apellidos
+        FROM participantes_plantrabajo ppt
+        LEFT OUTER JOIN maestro m ON m.idUsuarioAcademico = ppt.idMaestro
+        LEFT OUTER JOIN usuarioacademico u ON u.idUsuarioAcademico = m.idUsuarioAcademico
+        WHERE ppt.idPlanDeTrabajo = #{idPlanDeTrabajo}
+    </select>
+    
+    <insert id="guardarEEPlanDeTrabajo" parameterType="model.pojos.EEPlanTrabajo">
+        INSERT INTO eeplantrabajo (nombre,herramientas,idPlanDeTrabajo)
+        VALUES(#{nombre},#{herramientas},#{idPlanDeTrabajo})
+    </insert>
+    
+    <insert id="guardarEvaluacion" parameterType="model.pojos.Evaluacion">
+        INSERT INTO evaluacion_plancurso (porcentaje,instrumento, idEEPlanTrabajo)
+        VALUES(#{porcentaje},#{instrumento},#{idEEPlanTrabajo})
+    </insert>
+    
+     <insert id="guardarTema" parameterType="model.pojos.Tema">
+        INSERT INTO evaluacion_plancurso (primerParcial,segundoParcial, resto, idEEPlanTrabajo)
+        VALUES(#{porcentaje},#{instrumento},#{idEEPlanDeTrabajo})
+    </insert>
+    
+    <insert id="guardarObjetivoParticular" parameterType="model.pojos.ObjetivoParticular">
+        INSERT INTO objetivoparticular (objetivo,metas,idPlanTrabajo)
+        VALUES(#{objetivo},#{metas},#{idPlanDeTrabajo})
+    </insert>
+    
+    <insert id="guardarActividad" parameterType="model.pojos.Actividad">
+        INSERT INTO actividad (accion,fecha,formaDeOperar,idObjetivoParticular)
+        VALUES(#{accion},#{fecha},#{formaDeOperar},#{idObjetivoParticular})
+    </insert>
+    
+    <insert id="guardarParticipante" parameterType="model.pojos.Participante">
+        INSERT INTO participante_minuta (idMaestro, idPlanDeTrabajo)
+        VALUES(#{idMaestro},#{idDocumento})
+    </insert>
+    
+    <insert id="guardarPlanDeTrabajo" parameterType="model.pojos.PlanDeTrabajo">
+        INSERT INTO plandecurso (formato, fechaAprobacion, objetivoGeneral, programaEducativo)
+        VALUES(#{formato},#{fechaAprobacion},#{objetivoGeneral},#{programaEducativo})
+    </insert>
+</mapper>
+

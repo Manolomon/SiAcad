@@ -6,7 +6,7 @@
  */
  
 /**
- * Author:  Deklok
+ * Author:  Daniel Escamilla Cortés
  * Created: May 8, 2018
  */
 
@@ -105,6 +105,25 @@ CREATE TABLE PeriodoA (
     FOREIGN KEY (idPlanDeTrabajo) REFERENCES PlanDeTrabajo(idPlanDeTrabajo)
 );
 
+CREATE TABLE ObjetivoParticular (
+    idObjetivoParticular int NOT NULL auto_increment,
+    objetivo varchar(200),
+    metas varchar(500),
+    idPlanDeTrabajo int,
+    PRIMARY KEY (idObjetivoParticular),
+    FOREIGN KEY (idPlanDeTrabajo) REFERENCES PlanDeTrabajo(idPlanDeTrabajo)
+);
+
+CREATE TABLE Actividad (
+    idActividad int NOT NULL auto_increment,
+    accion varchar(200),    
+    fecha varchar(150),
+    formaDeOperar varchar(500),
+    idObjetivoParticular int,
+    PRIMARY KEY (idActividad),
+    FOREIGN KEY (idObjetivoParticular) REFERENCES ObjetivoParticular(idObjetivoParticular)
+);
+
 CREATE TABLE EEPlanTrabajo (
     idEEPlanTrabajo int NOT NULL auto_increment,
     nombre varchar(70),
@@ -122,6 +141,14 @@ CREATE TABLE Tema (
     idEEPlanTrabajo int NOT NULL,
     PRIMARY KEY (idTema),
     FOREIGN KEY (idEEPlanTrabajo) REFERENCES EEPlanTrabajo(idEEPlanTrabajo)
+);
+
+CREATE TABLE Participante_PlanTrabajo (
+    idMaestro int NOT NULL,
+    idPlanDeTrabajo int NOT NULL,
+    PRIMARY KEY (idMaestro,idPlanDeTrabajo),
+    FOREIGN KEY (idMaestro) REFERENCES Maestro(idUsuarioAcademico),
+    FOREIGN KEY (idPlanDeTrabajo) REFERENCES PlanDeTrabajo(idPlanDeTrabajo)
 );
 
 CREATE TABLE PlanDeCurso (

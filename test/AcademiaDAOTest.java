@@ -76,7 +76,7 @@ public class AcademiaDAOTest {
     public void testObtenerExperienciasEducativas() {
         System.out.println("obtenerExperienciasEducativas");
         List<ExperienciaEducativa> expResult = null;
-        List<ExperienciaEducativa> result = AcademiaDAO.obtenerExperienciasEducativas();
+        List<ExperienciaEducativa> result = AcademiaDAO.obtenerExperienciasEducativas(1);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("No se han obtenido las EE.");

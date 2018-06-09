@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="MinutaDeAcademia">
     <select id="obtenerMinuta" resultType="model.pojos.MinutaDeAcademia" parameterType="Integer">
-        SELECT * FROM minutadeacademia WHERE idMinutaDeAcademia = #{idMinutaDeAcademia}
+        SELECT * FROM minutadeacademia WHERE idReunion = #{idReunion}
     </select>
     
     <select id="obtenerParticipantes" resultType="model.pojos.Maestro" parameterType="Integer">
