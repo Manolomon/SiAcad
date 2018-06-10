@@ -3,12 +3,9 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
-<?import com.jfoenix.controls.JFXTreeTableColumn?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -74,12 +71,12 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </JFXButton>
-                  <TableView fx:id="tablePlaneacion" editable="true" layoutX="14.0" layoutY="50.0" prefHeight="452.0" prefWidth="1045.0">
+                  <TableView fx:id="tablePlaneacion" layoutX="17.0" layoutY="59.0" prefHeight="434.0" prefWidth="1045.0">
                     <columns>
-                      <TableColumn fx:id="planeacionUnidad" prefWidth="75.0" text="C1" />
-                      <TableColumn fx:id="planeacionTemas" prefWidth="75.0" text="C2" />
-                        <TableColumn fx:id="planeacionFechas" prefWidth="75.0" text="Column X" />
-                        <TableColumn fx:id="planeacionTecnicas" prefWidth="75.0" text="Column X" />
+                      <TableColumn fx:id="planeacionUnidad" prefWidth="100.0" text="Unidad" />
+                      <TableColumn fx:id="planeacionTemas" prefWidth="400.0" text="Temas" />
+                        <TableColumn fx:id="planeacionFechas" prefWidth="150.0" text="Fechas" />
+                        <TableColumn fx:id="planeacionTecnicas" prefWidth="395.0" text="Técnicas Didácticas" />
                     </columns>
                   </TableView>
                </children>
@@ -94,17 +91,6 @@
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <JFXTreeTableView fx:id="tableBibliografia" layoutX="11.0" layoutY="59.0" prefHeight="434.0" prefWidth="696.0">
-                     <columns>
-                        <JFXTreeTableColumn fx:id="bibliografiaAutor" minWidth="133" prefWidth="160.0" resizable="false" sortable="false" text="Autor(es)" />
-                        <JFXTreeTableColumn fx:id="bibliografiaTitulo" minWidth="160.0" prefWidth="270.0" resizable="false" sortable="false" text="Título del libro" />
-                        <JFXTreeTableColumn fx:id="bibliografiaEditorial" minWidth="133.0" prefWidth="100.0" resizable="false" sortable="false" text="Editorial" />
-                        <JFXTreeTableColumn fx:id="biblioYear" minWidth="133" prefWidth="120.0" resizable="false" sortable="false" text="Año" />
-                     </columns>
-                     <columnResizePolicy>
-                        <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </JFXTreeTableView>
                   <JFXButton fx:id="btnMenosBibliografia" layoutX="564.0" layoutY="11.0" onAction="#clickMenosBibliografia" prefHeight="37.0" prefWidth="54.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #728EF9, #675DF9); -fx-background-radius: 50;" text="-" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
@@ -115,6 +101,14 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </JFXButton>
+                  <TableView fx:id="tableBibliografia" layoutX="12.0" layoutY="56.0" prefHeight="445.0" prefWidth="696.0">
+                    <columns>
+                      <TableColumn fx:id="bibliografiaAutor" prefWidth="190.0" text="Autor(es)" />
+                      <TableColumn fx:id="bibliografiaTitulo" prefWidth="270.0" text="Título" />
+                        <TableColumn fx:id="bibliografiaEditorial" prefWidth="115.0" text="Editorial" />
+                        <TableColumn fx:id="biblioYear" prefWidth="120.0" text="Año" />
+                    </columns>
+                  </TableView>
                </children>
                <effect>
                   <DropShadow color="#000000a1" />
@@ -127,17 +121,6 @@
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <JFXTreeTableView fx:id="tableCalendario" layoutX="11.0" layoutY="59.0" prefHeight="242.0" prefWidth="1061.0">
-                     <columns>
-                        <JFXTreeTableColumn fx:id="calendarioUnidad1" minWidth="133" prefWidth="160.0" resizable="false" sortable="false" text="Unidad" />
-                        <JFXTreeTableColumn fx:id="calendarioFechas" minWidth="160.0" prefWidth="250.0" resizable="false" sortable="false" text="Fechas" />
-                        <JFXTreeTableColumn fx:id="calendarioCriterio" minWidth="133.0" prefWidth="400.0" resizable="false" sortable="false" text="Criterio de Evaluación" />
-                        <JFXTreeTableColumn fx:id="calendarioPorcentage" minWidth="133" prefWidth="250.0" resizable="false" sortable="false" text="Porcentaje %" />
-                     </columns>
-                     <columnResizePolicy>
-                        <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </JFXTreeTableView>
                   <JFXButton fx:id="btnMasCalendario" disable="true" layoutX="928.0" layoutY="11.0" prefHeight="37.0" prefWidth="54.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #728EF9, #675DF9); -fx-background-radius: 50;" text="-" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
@@ -149,6 +132,14 @@
                      </font>
                   </JFXButton>
                   <Label layoutX="169.0" layoutY="21.0" text="(Obtenido del Plan de Trabajo de la Academia)" textFill="#999999" />
+                  <TableView fx:id="tableCalendario" layoutX="9.0" layoutY="55.0" prefHeight="242.0" prefWidth="1060.0">
+                    <columns>
+                      <TableColumn fx:id="calendarioUnidad" prefWidth="160.0" text="Unidad" />
+                      <TableColumn fx:id="calendarioFechas" prefWidth="250.0" text="Fechas" />
+                        <TableColumn fx:id="calendarioCriterio" prefWidth="400.0" text="Criterio de Evaluación" />
+                        <TableColumn fx:id="calendarioPorcentage" prefWidth="250.0" text="Porcentage %" />
+                    </columns>
+                  </TableView>
                </children>
                <effect>
                   <DropShadow color="#000000a1" />

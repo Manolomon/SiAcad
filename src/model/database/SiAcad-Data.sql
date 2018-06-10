@@ -13,7 +13,7 @@
 USE SiAcad;
 
 INSERT INTO rol VALUES (null,"Maestro");
-INSERT INTO rol VALUES (null,"Coordinador de Academia");
+INSERT INTO rol VALUES (null,"Coordinador");
 
 INSERT INTO tipo VALUES (null,"Medio tiempo");
 INSERT INTO tipo VALUES (null,"Tiempo completo");

@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <property name="driver" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/SiAcad"/>
         <property name="username" value="root"/>
-        <property name="password" value="12345"/>
+        <property name="password" value="1234"/>
         <property name="poolMaximumActiveConnections" value="50"/>
       </dataSource>
     </environment>
