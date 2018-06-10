@@ -4,8 +4,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="PlanDeCurso">
+    <select id="contarPlanes" resultType="Integer">
+        SELECT COUNT (idPlanDeCurso) FROM plandecurso;
+    </select>
+    
     <select id="obtenerPlanDeCurso" resultType="model.pojos.PlanDeCurso" parameterType="Integer">
         SELECT * FROM plandecurso WHERE idCurso = #{idCurso)
+    </select>
+    
+    <select id="obtenerNombreCurso" resultType="String" parameterType="Integer">
+        SELECT nombre FROM experienciaeducativa WHERE idExperienciaEducativa = #{idExperienciaEducativa};
     </select>
     
     <select id="obtenerEvaluacionesDePlanDeTrabajo" resultType="model.pojos.Evaluacion" parameterType="Integer">
@@ -56,8 +64,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
     
     <insert id="guardarPlanDeCurso" parameterType="model.pojos.PlanDeCurso">
-        INSERT INTO plandecurso (formato, objetivoGeneral, fecha, idCurso)
-        VALUES(#{formato},#{objetivoGeneral},#{fecha},#{idCurso})
+        INSERT INTO plandecurso (idPlanDeCurso,formato, objetivoGeneral, fecha, idCurso)
+        VALUES(#{idPlanDeCurso}, #{formato},#{objetivoGeneral},#{fecha},#{idCurso})
     </insert>
 </mapper>
 

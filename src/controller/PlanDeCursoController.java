@@ -17,6 +17,7 @@ import controller.dialog.CalendarioDialogController;
 import controller.dialog.PlaneacionDialogController;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -25,6 +26,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,9 +38,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import model.dao.PlanDeCursoDAO;
 import model.pojos.Bibliografia;
 import model.pojos.Curso;
+import model.pojos.Evaluacion;
 import model.pojos.Evaluacion_PlanCurso;
+import model.pojos.PlanDeCurso;
 import model.pojos.Planeacion;
 
 /**
@@ -144,6 +150,8 @@ public class PlanDeCursoController implements Initializable {
   private int posicionTablaBibliografia;
 
   private int posicionTablaCalendario;
+  
+  private PlanDeCurso plandecurso;
 
   private List<Curso> cursosDelMaestro;
   /**
@@ -292,15 +300,45 @@ public class PlanDeCursoController implements Initializable {
     listaEvaluaciones = FXCollections.observableArrayList();
     tableCalendario.setItems(listaEvaluaciones);
   }
+  
+  private void guardarBibliografias() {
+      listaBibliografias.forEach((bib) -> {
+          if (!PlanDeCursoDAO.guardarBibliografia(bib)) {
+              mensaje("Error","Error en la conexion con la base de datos");
+          }
+      });
+  }
+  
+  private void guardarPlaneaciones() {
+      listaPlaneaciones.forEach((plan) -> {
+          if (!PlanDeCursoDAO.guardarPlaneacion(plan)) {
+              mensaje("Error","Error en la conexion con la base de datos");
+          }
+      });
+  }
+  
+  private void guardarEvaluaciones() {
+      listaEvaluaciones.forEach((eval) -> {
+          if (!PlanDeCursoDAO.guardarEvaluacion(eval)) {
+              mensaje("Error","Error en la conexion con la base de datos");
+          }
+      });
+  }
 
   @FXML
   public void clickEnviar(ActionEvent event) {
-
+      
   }
 
   @FXML
   public void clickGuardar(ActionEvent event) {
-
+      guardarBibliografias();
+      guardarPlaneaciones();
+      guardarEvaluaciones();
+      plandecurso.setObjetivoGeneral(txtObjetivo.getText());
+      if(!PlanDeCursoDAO.guardarPlanDeCurso(plandecurso)) {
+         mensaje("Error","Error en la conexion con la base de datos"); 
+      }
   }
 
   @FXML
@@ -418,7 +456,7 @@ public class PlanDeCursoController implements Initializable {
    */
   public void cargarCursos() {
     try {
-      //cursosDelMaestro = ; //TODO: Sacada de Datos
+      //cursosDelMaestro = PlanDeCursoDAO.obtenerCursoesDeMaestro(idMaestro)//TODO: Sacada de Datos
     } catch (Exception e) {
       mensaje("Error", "Error en la conexión a la Base de Datos");
     }
@@ -430,7 +468,7 @@ public class PlanDeCursoController implements Initializable {
         if (curso == null) {
           return "";
         } else {
-          return curso.getNRC(); //TODO: No sé si dejar el NRC o sacar el nombre de la EE
+          return PlanDeCursoDAO.obtenerNombreCurso(curso.getIdExperienciaEducativa()); //TODO: No sé si dejar el NRC o sacar el nombre de la EE
         }
       }
 
@@ -464,13 +502,30 @@ public class PlanDeCursoController implements Initializable {
     content.setActions(aceptar);
     dialog.show();
   }
+  
+  private void recuperarEvaluacionesDePlanTrabajo(Integer idCurso) {
+      Curso cursoTemp = cmbCurso.getSelectionModel().getSelectedItem();
+      List<Evaluacion> listaEvalTemp = PlanDeCursoDAO.obtenerEvaluacionesDePlanDeTrabajo(
+              cursoTemp.getIdCurso());
+      List<Evaluacion_PlanCurso> listaEval = new ArrayList<>();
+      listaEvalTemp.forEach((evalTemp) -> {
+          Evaluacion_PlanCurso eval = new Evaluacion_PlanCurso();
+          eval.setCriterioDeEvaluacion(evalTemp.getInstrumento());
+          eval.setPorcentaje(evalTemp.getPorcentaje());
+          listaEval.add(eval);
+      });
+      listaEvaluaciones.addAll(listaEval);
+  }
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     inicializarTablaPlaneacion();
     inicializarTablaBibliografia();
     inicializarTablaCalendario();
-    listaEvaluaciones.add(new Evaluacion_PlanCurso(1, "Muchas cosas huuuu", 10, "Toda la vida"));
+    //listaEvaluaciones.add(new Evaluacion_PlanCurso(1, "Muchas cosas huuuu", 10, "Toda la vida"));
+    plandecurso = new PlanDeCurso();
+    plandecurso.setIdPlanDeCurso(PlanDeCursoDAO.contarPlanes()+1);
+    plandecurso.setFormato("plancurso");
   }
 
 }

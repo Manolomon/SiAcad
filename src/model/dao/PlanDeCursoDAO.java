@@ -16,6 +16,38 @@ import model.pojos.Planeacion;
 import org.apache.ibatis.session.SqlSession;
 
 public class PlanDeCursoDAO {
+    
+    public static Integer contarPlanes() {
+        Integer num = null;
+        SqlSession conn = null;
+        try {
+            conn = MyBatisUtils.getSession();
+            num = new Integer(conn.selectOne("PlanDeCurso.contarPlanes"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return num;
+    }
+    
+    public static String obtenerNombreCurso(Integer idEE) {
+        String name = null;
+        SqlSession conn = null;
+        try {
+            conn = MyBatisUtils.getSession();
+            name = conn.selectOne("PlanDeCurso.obtenerNombreCurso", idEE);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return name;
+    }
     /**
      * Obtener un plan de curso en especifico
      * @param idCurso curso del cual sacar el plan de curso

@@ -133,7 +133,7 @@ public class PlanDeCursoDAOTest {
     @Test
     public void testGuardarEvaluacion() {
         System.out.println("guardarEvaluacion");
-        Evaluacion evaluacion = null;
+        Evaluacion_PlanCurso evaluacion = null;
         boolean expResult = false;
         boolean result = PlanDeCursoDAO.guardarEvaluacion(evaluacion);
         assertEquals(expResult, result);
