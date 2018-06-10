@@ -15,6 +15,7 @@ import model.pojos.Evaluacion;
 import model.pojos.Evaluacion_PlanCurso;
 import model.pojos.Maestro;
 import model.pojos.ObjetivoParticular;
+import model.pojos.Participante;
 import model.pojos.PlanDeCurso;
 import model.pojos.PlanDeTrabajo;
 import model.pojos.Planeacion;
@@ -174,11 +175,11 @@ public class PlanDeTrabajoDAO {
      * @param planeacion
      * @return true si la consulta fue correcta
      */
-    public static boolean guardarPlaneacion(Planeacion planeacion) {
+    public static boolean guardarEEPlanTrabajo(EEPlanTrabajo ee) {
         SqlSession conn = null;
         try {
             conn = MyBatisUtils.getSession();
-            conn.insert("PlanDeCurso.guardarPlaneaciones", planeacion);
+            conn.insert("PlanDeTrabajo.guardarEEPlanDeTrabajo", ee);
             conn.commit();
             return true;
         } catch (Exception ex) {
@@ -196,11 +197,11 @@ public class PlanDeTrabajoDAO {
      * @param bib bibliografia a guardar
      * @return true si la consulta fue correcta
      */
-    public static boolean guardarBibliografia(Bibliografia bib) {
+    public static boolean guardarEvaluacion(Evaluacion eval) {
         SqlSession conn = null;
         try {
             conn = MyBatisUtils.getSession();
-            conn.insert("PlanDeCurso.guardarBibliografias", bib);
+            conn.insert("PlanDeTrabajo.guardarEvaluacion", eval);
             conn.commit();
             return true;
         } catch (Exception ex) {
@@ -218,11 +219,62 @@ public class PlanDeTrabajoDAO {
      * @param evaluacion
      * @return true si la consulta fue correcta
      */
-    public static boolean guardarEvaluacion(Evaluacion evaluacion) {
+    public static boolean guardarTema(Tema tema) {
         SqlSession conn = null;
         try {
             conn = MyBatisUtils.getSession();
-            conn.insert("PlanDeCurso.guardarEvaluaciones", evaluacion);
+            conn.insert("PlanDeTrabajo.guardarTema", tema);
+            conn.commit();
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return false;
+    }
+    
+    public static boolean guardarObjetivoParticular(ObjetivoParticular obj) {
+        SqlSession conn = null;
+        try {
+            conn = MyBatisUtils.getSession();
+            conn.insert("PlanDeTrabajo.guardarObjetivoParticular", obj);
+            conn.commit();
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return false;
+    }
+    
+    public static boolean guardarActividad(Actividad act) {
+        SqlSession conn = null;
+        try {
+            conn = MyBatisUtils.getSession();
+            conn.insert("PlanDeTrabajo.guardarActividad", act);
+            conn.commit();
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return false;
+    }
+    
+    public static boolean guardarParticipante(Participante participante) {
+        SqlSession conn = null;
+        try {
+            conn = MyBatisUtils.getSession();
+            conn.insert("PlanDeTrabajo.guardarParticipante", participante);
             conn.commit();
             return true;
         } catch (Exception ex) {
@@ -240,7 +292,7 @@ public class PlanDeTrabajoDAO {
      * @param plan plan de curso a guardar
      * @return true si la consulta fue correcta
      */
-    public static boolean guardarPlanDeCurso(PlanDeCurso plan) {
+    public static boolean guardarPlanDeTrabajo(PlanDeTrabajo plan) {
         SqlSession conn = null;
         try {
             conn = MyBatisUtils.getSession();

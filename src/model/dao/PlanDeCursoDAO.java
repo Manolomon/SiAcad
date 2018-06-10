@@ -191,7 +191,7 @@ public class PlanDeCursoDAO {
      * @param evaluacion
      * @return true si la consulta fue correcta
      */
-    public static boolean guardarEvaluacion(Evaluacion evaluacion) {
+    public static boolean guardarEvaluacion(Evaluacion_PlanCurso evaluacion) {
         SqlSession conn = null;
         try {
             conn = MyBatisUtils.getSession();
