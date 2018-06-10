@@ -1,15 +1,18 @@
 package model.pojos;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  * 
  * @author Daniel Escamilla Cortes
  */
 public class Bibliografia {
     private Integer idBibliografia;
-    private String titulo;
-    private String autor;
-    private String editorial;
-    private Integer anio;
+    private SimpleStringProperty titulo = new SimpleStringProperty();
+    private SimpleStringProperty autor = new SimpleStringProperty();
+    private SimpleStringProperty editorial = new SimpleStringProperty();
+    private SimpleIntegerProperty anio = new SimpleIntegerProperty();
     private Integer idPlanDeCurso;
 
     public Bibliografia() {
@@ -26,11 +29,18 @@ public class Bibliografia {
      */
     public Bibliografia(Integer idBibliografia, String titulo, String autor, String editorial, Integer anio, Integer idPlanDeCurso) {
         this.idBibliografia = idBibliografia;
-        this.titulo = titulo;
-        this.autor = autor;
-        this.editorial = editorial;
-        this.anio = anio;
+        this.titulo = new SimpleStringProperty(titulo);
+        this.autor = new SimpleStringProperty(autor);
+        this.editorial = new SimpleStringProperty(editorial);
+        this.anio = new SimpleIntegerProperty(anio);
         this.idPlanDeCurso = idPlanDeCurso;
+    }
+
+    public Bibliografia(String titulo, String autor, String editorial, Integer anio) {
+        this.titulo = new SimpleStringProperty(titulo);
+        this.autor = new SimpleStringProperty(autor);
+        this.editorial = new SimpleStringProperty(editorial);
+        this.anio = new SimpleIntegerProperty(anio);
     }
 
     /**
@@ -54,7 +64,7 @@ public class Bibliografia {
      * @return titulo del libro
      */
     public String getTitulo() {
-        return titulo;
+        return titulo.get();
     }
 
     /**
@@ -62,7 +72,7 @@ public class Bibliografia {
      * @param titulo 
      */
     public void setTitulo(String titulo) {
-        this.titulo = titulo;
+        this.titulo = new SimpleStringProperty(titulo);
     }
 
     /**
@@ -70,7 +80,7 @@ public class Bibliografia {
      * @return autor del libro
      */
     public String getAutor() {
-        return autor;
+        return autor.get();
     }
 
     /**
@@ -78,7 +88,7 @@ public class Bibliografia {
      * @param autor 
      */
     public void setAutor(String autor) {
-        this.autor = autor;
+        this.autor = new SimpleStringProperty(autor);
     }
 
     /**
@@ -86,7 +96,7 @@ public class Bibliografia {
      * @return editorial del libro
      */
     public String getEditorial() {
-        return editorial;
+        return editorial.get();
     }
 
     /**
@@ -94,7 +104,7 @@ public class Bibliografia {
      * @param editorial 
      */
     public void setEditorial(String editorial) {
-        this.editorial = editorial;
+        this.editorial = new SimpleStringProperty(editorial);
     }
 
     /**
@@ -102,7 +112,7 @@ public class Bibliografia {
      * @return año de publicacion del libro
      */
     public Integer getAnio() {
-        return anio;
+        return anio.get();
     }
 
     /**
@@ -110,7 +120,7 @@ public class Bibliografia {
      * @param anio 
      */
     public void setAnio(Integer anio) {
-        this.anio = anio;
+        this.anio = new SimpleIntegerProperty(anio);
     }
 
     /**

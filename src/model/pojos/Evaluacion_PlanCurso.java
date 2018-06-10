@@ -1,78 +1,86 @@
 package model.pojos;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author Deklok
  */
 public class Evaluacion_PlanCurso {
-    private Integer idEvaluacionP;
-    private Integer unidad;
-    private String criterioDeEvaluacion;
-    private Integer porcentaje;
-    private String fechas;
-    private Integer idPlanDeCurso;
+  private Integer idEvaluacionP;
+  private SimpleIntegerProperty unidad = new SimpleIntegerProperty();
+  private SimpleStringProperty criterioDeEvaluacion = new SimpleStringProperty();
+  private SimpleIntegerProperty porcentaje = new SimpleIntegerProperty();
+  private SimpleStringProperty fechas = new SimpleStringProperty();
+  private Integer idPlanDeCurso;
 
-    public Evaluacion_PlanCurso() {
-    }
+  public Evaluacion_PlanCurso() {
+  }
 
-    
-    
-    public Evaluacion_PlanCurso(Integer idEvaluacionP, Integer unidad, String criterioDeEvaluacion, Integer porcentaje, String fechas, Integer idPlanDeCurso) {
-        this.idEvaluacionP = idEvaluacionP;
-        this.unidad = unidad;
-        this.criterioDeEvaluacion = criterioDeEvaluacion;
-        this.porcentaje = porcentaje;
-        this.fechas = fechas;
-        this.idPlanDeCurso = idPlanDeCurso;
-    }
+  public Evaluacion_PlanCurso(Integer idEvaluacionP, Integer unidad, String criterioDeEvaluacion, Integer porcentaje,
+      String fechas, Integer idPlanDeCurso) {
+    this.idEvaluacionP = idEvaluacionP;
+    this.unidad = new SimpleIntegerProperty(unidad);
+    this.criterioDeEvaluacion = new SimpleStringProperty(criterioDeEvaluacion);
+    this.porcentaje = new SimpleIntegerProperty(porcentaje);
+    this.fechas = new SimpleStringProperty(fechas);
+    this.idPlanDeCurso = idPlanDeCurso;
+  }
 
-    public Integer getIdEvaluacionP() {
-        return idEvaluacionP;
-    }
+  public Evaluacion_PlanCurso(Integer unidad, String criterioDeEvaluacion, Integer porcentaje, String fechas) {
+    this.unidad = new SimpleIntegerProperty(unidad);
+    this.criterioDeEvaluacion = new SimpleStringProperty(criterioDeEvaluacion);
+    this.porcentaje = new SimpleIntegerProperty(porcentaje);
+    this.fechas = new SimpleStringProperty(fechas);
+  }
 
-    public void setIdEvaluacionP(Integer idEvaluacionP) {
-        this.idEvaluacionP = idEvaluacionP;
-    }
+  public Integer getIdEvaluacionP() {
+    return idEvaluacionP;
+  }
 
-    public Integer getUnidad() {
-        return unidad;
-    }
+  public void setIdEvaluacionP(Integer idEvaluacionP) {
+    this.idEvaluacionP = idEvaluacionP;
+  }
 
-    public void setUnidad(Integer unidad) {
-        this.unidad = unidad;
-    }
+  public Integer getUnidad() {
+    return unidad.get();
+  }
 
-    public String getCriterioDeEvaluacion() {
-        return criterioDeEvaluacion;
-    }
+  public void setUnidad(Integer unidad) {
+    this.unidad = new SimpleIntegerProperty(unidad);
+  }
 
-    public void setCriterioDeEvaluacion(String criterioDeEvaluacion) {
-        this.criterioDeEvaluacion = criterioDeEvaluacion;
-    }
+  public String getCriterioDeEvaluacion() {
+    return criterioDeEvaluacion.get();
+  }
 
-    public Integer getPorcentaje() {
-        return porcentaje;
-    }
+  public void setCriterioDeEvaluacion(String criterioDeEvaluacion) {
+    this.criterioDeEvaluacion = new SimpleStringProperty(criterioDeEvaluacion);
+  }
 
-    public void setPorcentaje(Integer porcentaje) {
-        this.porcentaje = porcentaje;
-    }
+  public Integer getPorcentaje() {
+    return porcentaje.get();
+  }
 
-    public String getFechas() {
-        return fechas;
-    }
+  public void setPorcentaje(Integer porcentaje) {
+    this.porcentaje = new SimpleIntegerProperty(porcentaje);
+  }
 
-    public void setFechas(String fechas) {
-        this.fechas = fechas;
-    }
+  public String getFechas() {
+    return fechas.get();
+  }
 
-    public Integer getIdPlanDeCurso() {
-        return idPlanDeCurso;
-    }
+  public void setFechas(String fechas) {
+    this.fechas = new SimpleStringProperty(fechas);
+  }
 
-    public void setIdPlanDeCurso(Integer idPlanDeCurso) {
-        this.idPlanDeCurso = idPlanDeCurso;
-    }
-    
-    
+  public Integer getIdPlanDeCurso() {
+    return idPlanDeCurso;
+  }
+
+  public void setIdPlanDeCurso(Integer idPlanDeCurso) {
+    this.idPlanDeCurso = idPlanDeCurso;
+  }
+
 }
