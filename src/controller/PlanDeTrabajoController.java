@@ -28,6 +28,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -44,6 +45,7 @@ import model.pojos.Maestro;
 import model.pojos.ObjetivoParticular;
 import model.pojos.Participante;
 import model.pojos.PlanDeTrabajo;
+import model.pojos.Tema;
 
 /**
  * @author Manolo Pérez
@@ -102,20 +104,19 @@ public class PlanDeTrabajoController implements Initializable {
   private JFXTextArea txtObjetivoGeneral;
 
   private List<Maestro> listaParticipantes;
-  
+
   private ObservableList<Actividad> listaActividades;
 
   private int posicionTablaActividad;
   
   private PlanDeTrabajo plandetrabajo;
 
-  private final ListChangeListener<Actividad> selectorTablaActividades = new ListChangeListener<Actividad>(){
-      @Override 
-      public void onChanged(ListChangeListener.Change<?extends Actividad>c){
-          ponerActividadSeleccionada();
-      }
-  };
-  
+  private List<List<Evaluacion>> evaluacionesEE;
+
+  private List<Tema> listaTemasEE;
+
+  private final ListChangeListener<Actividad> selectorTablaActividades=new ListChangeListener<Actividad>(){@Override public void onChanged(ListChangeListener.Change<?extends Actividad>c){ponerActividadSeleccionada();}};
+
   public Actividad getTablaActividadSeleccionada() {
     if (tableActividad != null) {
       List<Actividad> tabla = tableActividad.getSelectionModel().getSelectedItems();
@@ -164,9 +165,32 @@ public class PlanDeTrabajoController implements Initializable {
       });
   }
 
+  private void obtenerEELlenadas() {
+    ObservableList<Tab> tabs = tabPanelEE.getTabs();
+    for (Tab t : tabs) {
+      System.out.println("Holis");
+      StackPane contenido = (StackPane) t.getContent();
+      AnchorPane contenedor = (AnchorPane) contenido.getChildren().get(0);
+      for (Node node : contenedor.getChildren()) {
+         if (node.getAccessibleText() != null) {
+          switch (node.getAccessibleText()) {
+          case "Tablita"://Actividad que vayas a hacer con la tablita
+            break;
+          case "Primer Parcial"://Con los textfields
+            break;
+          case "Segundo Parcial":
+            break;
+          case "Posterior":
+            break;
+          }
+        }
+      }
+    }
+  }
+
   @FXML
   void clickEnviar(ActionEvent event) {
-
+    obtenerEELlenadas();
   }
 
   @FXML
@@ -207,7 +231,7 @@ public class PlanDeTrabajoController implements Initializable {
 
   @FXML
   void clickMenosActividad(ActionEvent event) {
-      if (listaActividades.size() > 0) {
+    if (listaActividades.size() > 0) {
       listaActividades.remove(listaActividades.size() - 1);
     }
   }
@@ -229,39 +253,23 @@ public class PlanDeTrabajoController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     inicializarTablaActividad();
-   for (int i = 0; i < 17; i++) {
-     FXMLLoader loader = new FXMLLoader();
-     loader.setLocation(getClass().getResource("/view/AsistenteAReunion.fxml"));
-     try {
-       loader.load();
-     } catch (IOException ex) {
-       Logger.getLogger(MinutaDeReunionController.class.getName()).log(Level.SEVERE, null, ex);
-     }
-     AsistenteAReunionController display = loader.getController();
-     AnchorPane pan = loader.getRoot();
-     // display.asignarDatos(curso);
-     listParticipantes.getItems().add(pan);
-     plandetrabajo = new PlanDeTrabajo();
-     plandetrabajo.setIdPlanDetrabajo(PlanDeTrabajoDAO.contarPlanes()+1);
-   }
 
-   
    String[] nombres = { "Requerimientos de Software", "Verificación y Validación de Software", "Principos de Diseño de Software"};
 
-   for (String nombre : nombres) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/view/FormaDeEvaluacion.fxml"));
-        try {
-            loader.load();
-        } catch (IOException ex) {
-            Logger.getLogger(PlanDeTrabajoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        EvaluacionController display = loader.getController();
-        StackPane p = loader.getRoot();
-        Tab tab = new Tab(nombre);
-        tab.setContent(p);
-        tabPanelEE.getTabs().add(tab);
-   }
+    for (String nombre : nombres) {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("/view/FormaDeEvaluacion.fxml"));
+      try {
+        loader.load();
+      } catch (IOException ex) {
+        Logger.getLogger(PlanDeTrabajoController.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      EvaluacionController display = loader.getController();
+      StackPane p = loader.getRoot();
+      Tab tab = new Tab(nombre);
+      tab.setContent(p);
+      tabPanelEE.getTabs().add(tab);
+    }
   }
   
   /**

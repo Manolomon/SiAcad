@@ -14,6 +14,12 @@ public class Tema {
   public Tema() {
   }
 
+  public Tema(String primerParcial, String segundoParcial, String resto) {
+    this.primerParcial = primerParcial;
+    this.segundoParcial = segundoParcial;
+    this.resto = resto;
+  }
+
   public Tema(Integer idTema, String primerParcial, String segundoParcial, String resto, Integer idEEPlanDeTrabajo) {
     this.idTema = idTema;
     this.primerParcial = primerParcial;

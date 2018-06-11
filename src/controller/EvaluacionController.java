@@ -69,7 +69,7 @@ public class EvaluacionController implements Initializable {
   @FXML
   private TableColumn<Evaluacion, Integer> evaluacionPorcentaje;
   
-  private ObservableList<Evaluacion> listaEvaluaciones;
+  public ObservableList<Evaluacion> listaEvaluaciones;
   
   private int posicionTablaEvalucaion;
   
