@@ -1,13 +1,16 @@
 package model.pojos;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author Deklok
  */
 public class Evaluacion {
   private Integer idEvaluacion;
-  private Integer porcentaje;
-  private String instrumento;
+  private SimpleIntegerProperty porcentaje = new SimpleIntegerProperty();
+  private SimpleStringProperty instrumento = new SimpleStringProperty();
   private Integer idPlanDeTrabajo;
 
   /**
@@ -15,6 +18,11 @@ public class Evaluacion {
     */
   public Evaluacion() {
   }
+
+  public Evaluacion(Integer porcentaje, String instrumento) {
+    this.porcentaje = new SimpleIntegerProperty(porcentaje);
+    this.instrumento = new SimpleStringProperty(instrumento);
+}
 
   /**
     * Constructor de la clase con todos sus atributos
@@ -25,8 +33,8 @@ public class Evaluacion {
     */
     public Evaluacion(Integer idEvaluacion, Integer porcentaje, String instrumento, Integer idPlanDeTrabajo) {
         this.idEvaluacion = idEvaluacion;
-        this.porcentaje = porcentaje;
-        this.instrumento = instrumento;
+        this.porcentaje = new SimpleIntegerProperty(porcentaje);
+        this.instrumento = new SimpleStringProperty(instrumento);
         this.idPlanDeTrabajo = idPlanDeTrabajo;
     }
 
@@ -51,7 +59,7 @@ public class Evaluacion {
     * @return porcentaje
     */
     public Integer getPorcentaje() {
-        return porcentaje;
+        return porcentaje.get();
     }
 
     /**
@@ -59,7 +67,7 @@ public class Evaluacion {
     * @param porcentaje
     */
     public void setPorcentaje(Integer porcentaje) {
-        this.porcentaje = porcentaje;
+        this.porcentaje = new SimpleIntegerProperty(porcentaje);
     }
 
     /**
@@ -67,7 +75,7 @@ public class Evaluacion {
     * @return instrumento
     */
     public String getInstrumento() {
-        return instrumento;
+        return instrumento.get();
     }
 
     /**
@@ -75,7 +83,7 @@ public class Evaluacion {
     * @param instrumento
     */
     public void setInstrumento(String instrumento) {
-        this.instrumento = instrumento;
+        this.instrumento = new SimpleStringProperty(instrumento);
     }
 
     /**

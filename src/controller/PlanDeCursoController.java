@@ -224,15 +224,6 @@ public class PlanDeCursoController implements Initializable {
     final Planeacion plan = getTablaPlaneacionSeleccionada();
     posicionTablaPlaneacion = listaPlaneaciones.indexOf(plan);
     if (plan != null) {
-      // // Pongo los textFields con los datos correspondientes
-      // nombreTF.setText(persona.getNombre());
-      // apellidoTF.setText(persona.getApellido());
-      // edadTF.setText(persona.getEdad().toString());
-      // telefonoTF.setText(persona.getTelefono());
-      // // Pongo los botones en su estado correspondiente
-      // modificarBT.setDisable(false);
-      // eliminarBT.setDisable(false);
-      // aniadirBT.setDisable(true);
     }
   }
 
@@ -240,15 +231,6 @@ public class PlanDeCursoController implements Initializable {
     final Bibliografia bibliografia = getTablaBibliografiaSeleccionada();
     posicionTablaBibliografia = listaPlaneaciones.indexOf(bibliografia);
     if (bibliografia != null) {
-      // // Pongo los textFields con los datos correspondientes
-      // nombreTF.setText(persona.getNombre());
-      // apellidoTF.setText(persona.getApellido());
-      // edadTF.setText(persona.getEdad().toString());
-      // telefonoTF.setText(persona.getTelefono());
-      // // Pongo los botones en su estado correspondiente
-      // modificarBT.setDisable(false);
-      // eliminarBT.setDisable(false);
-      // aniadirBT.setDisable(true);
     }
   }
 
@@ -256,15 +238,6 @@ public class PlanDeCursoController implements Initializable {
     final Evaluacion_PlanCurso evaluacion = getTablaCalendarioSeleccionado();
     posicionTablaCalendario = listaEvaluaciones.indexOf(evaluacion);
     if (evaluacion != null) {
-      // // Pongo los textFields con los datos correspondientes
-      // nombreTF.setText(persona.getNombre());
-      // apellidoTF.setText(persona.getApellido());
-      // edadTF.setText(persona.getEdad().toString());
-      // telefonoTF.setText(persona.getTelefono());
-      // // Pongo los botones en su estado correspondiente
-      // modificarBT.setDisable(false);
-      // eliminarBT.setDisable(false);
-      // aniadirBT.setDisable(true);
     }
   }
 
