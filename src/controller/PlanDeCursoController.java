@@ -315,6 +315,8 @@ public class PlanDeCursoController implements Initializable {
       guardarPlaneaciones();
       guardarEvaluaciones();
       plandecurso.setObjetivoGeneral(txtObjetivo.getText());
+      Curso cursotemp = cmbCurso.getSelectionModel().getSelectedItem();
+      plandecurso.setIdCurso(cursotemp.getIdCurso());
       if(!PlanDeCursoDAO.guardarPlanDeCurso(plandecurso)) {
          mensaje("Error","Error en la conexion con la base de datos"); 
       }
