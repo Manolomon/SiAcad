@@ -8,6 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM academia
     </select>
 
+    <select id="obtenerCoordinacion" resultType="model.pojos.Academia" parameterType="Integer">
+        SELECT * FROM academia WHERE idCoordinador = #{idCoordinador}
+    </select>
+
     <select id="obtenerAcademiaId" resultType="model.pojos.Academia" parameterType="Integer">
         SELECT * FROM academia WHERE idAcademia = #{idAcademia}
     </select>

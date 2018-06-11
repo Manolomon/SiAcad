@@ -27,12 +27,12 @@ INSERT INTO maestro VALUES (1,"123456", 1);
 INSERT INTO maestro VALUES (2,"654321", 2);
 INSERT INTO maestro VALUES (3,"456123", 3);
 
-INSERT INTO academia VALUES (null, "Comunicacion");
-INSERT INTO academia VALUES (null, "Matematicas");
-INSERT INTO academia VALUES (null, "Programacion");
-INSERT INTO academia VALUES (null, "Diseño");
+INSERT INTO academia VALUES (null, "Comunicacion", 1);
+INSERT INTO academia VALUES (null, "Matematicas", 2);
+INSERT INTO academia VALUES (null, "Programacion", 3);
+/* INSERT INTO academia VALUES (null, "Diseño");
 INSERT INTO academia VALUES (null, "Inutil");
-INSERT INTO academia VALUES (null, "De Rellenno");
+INSERT INTO academia VALUES (null, "De Rellenno"); */
 
 INSERT INTO experienciaeducativa VALUES (null, "Programacion",1);
 INSERT INTO experienciaeducativa VALUES (null, "Principios de Diseño",1);
@@ -42,7 +42,7 @@ INSERT INTO experienciaeducativa VALUES (null, "Matematicas Discretas",2);
 INSERT INTO experienciaeducativa VALUES (null, "Procesos",2);
 INSERT INTO experienciaeducativa VALUES (null, "Ingles",2);
 INSERT INTO experienciaeducativa VALUES (null, "Estructuras",4);
-INSERT INTO experienciaeducativa VALUES (null, "Programacion ll",1);
+INSERT INTO experienciaeducativa VALUES (null, "Programacion II",1);
 INSERT INTO experienciaeducativa VALUES (null, "Algebra",1);
 INSERT INTO experienciaeducativa VALUES (null, "Estadistica",2);
 INSERT INTO experienciaeducativa VALUES (null, "Redes",1);

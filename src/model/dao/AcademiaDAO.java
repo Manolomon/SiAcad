@@ -34,6 +34,22 @@ public class AcademiaDAO {
         }
         return lista;
     }
+    
+    public static Academia obtenerCoordinacion(Integer idMaestro) {
+        Academia user = null;
+        SqlSession conn = null;
+        try {
+            conn = MyBatisUtils.getSession();
+            user = conn.selectOne("Academia.obtenerCoordinacion", idMaestro);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return user;
+    }
 
     /**
      * Obtiene una academia en especifico con base al id

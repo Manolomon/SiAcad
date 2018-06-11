@@ -65,7 +65,7 @@ public class InicioController implements Initializable {
     iniciarSesion();
   }
   
-  public void cargarDrawer(){
+  public void cargarDrawer(UsuarioAcademico usuario){
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource("/view/Dashboard.fxml"));
     try {
@@ -74,7 +74,7 @@ public class InicioController implements Initializable {
       Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
     }
     DashboardController display = loader.getController();
-    //display.cargarUsuario(this.usuario);
+    display.cargarUsuario(this.usuario);
     StackPane vistaCursos = loader.getRoot();
     Scene newScene = new Scene(vistaCursos);
     Stage curStage = (Stage) rootPane.getScene().getWindow();
@@ -104,7 +104,7 @@ public class InicioController implements Initializable {
       datosIngresados = new UsuarioAcademico(txtEmail.getText(), txtPassword.getText());
       usuario = UsuarioAcademicoDAO.login(datosIngresados);
       if (usuario != null) {
-        cargarDrawer();
+        cargarDrawer(usuario);
       } else {
         mensaje("Usuario no registrado", "Revise su matrícula y su contraseña");
       }

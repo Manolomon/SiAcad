@@ -30,6 +30,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.dao.AcademiaDAO;
+import model.pojos.UsuarioAcademico;
 
 /**
  * Clase controladora de la escena de Dashboard de SiAcad
@@ -84,6 +86,8 @@ public class DashboardController implements Initializable {
 
   private String modoDeUsuario = "Maestro";
 
+  private UsuarioAcademico usuario;
+
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     drawer.setResizeContent(true);
@@ -97,6 +101,12 @@ public class DashboardController implements Initializable {
     drawer.setMouseTransparent(true);
   }
 
+  public void cargarUsuario(UsuarioAcademico usuario) {
+    this.usuario = usuario;
+    lblnombreMaestro.setText(usuario.getNombre() + " " + usuario.getApellidos());
+    lblAcademia.setText(AcademiaDAO.obtenerCoordinacion(usuario.getIdUsuarioAcademico()).getNombre());
+  }
+
   public void cargarPantalla(String nombrePantalla) {
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource("/view/" + nombrePantalla + ".fxml"));
@@ -105,8 +115,18 @@ public class DashboardController implements Initializable {
     } catch (IOException ex) {
       Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
     }
-    //FXMLVerMisCursosController display = loader.getController();
-    //display.asignarDatos(user);
+    switch (nombrePantalla) {
+    case "PlanDeCurso":
+      PlanDeCursoController display = loader.getController();
+      display.setIdMaestro(usuario.getIdUsuarioAcademico());
+      break;
+    case "PlanDeTrabajo":
+      break;
+    case "MinutaDeReunion":
+      break;
+    }
+    // FXMLVerMisCursosController display = loader.getController();
+    // display.asignarDatos(user);
     StackPane agregarView = loader.getRoot();
     Scene newScene = new Scene(agregarView);
     Stage curStage = (Stage) rootPane.getScene().getWindow();
@@ -129,24 +149,20 @@ public class DashboardController implements Initializable {
           if (node.getAccessibleText() != null) {
             switch (node.getAccessibleText()) {
             case "Inicio":
-              System.out.println("Click en Inicio");
               drawer.close();
               drawer.setMouseTransparent(true);
               break;
             case "Calendario":
-              System.out.println("Click en Calendario");
               break;
             case "Planes de Curso":
               cargarPantalla("PlanDeCurso");
               break;
             case "Avances Programáticos":
-              System.out.println("Click en Avances Programáticos");
               break;
             case "Perfil":
-              System.out.println("Click en Perfil");
               break;
             case "Planes de Trabajo":
-            cargarPantalla("PlanDeTrabajo");
+              cargarPantalla("PlanDeTrabajo");
               break;
             case "Reuniones":
               cargarPantalla("MinutaDeReunion");

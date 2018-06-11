@@ -7,7 +7,7 @@ package model.pojos;
 public class Academia {
   private Integer idAcademia;
   private String nombre;
-  private String coordinador;
+  private Integer idCoordinador;
 
   /**
     * Constructor por defecto de la clase
@@ -19,12 +19,12 @@ public class Academia {
     * Constructor de la clase con todos sus atributos
     * @param idAcademia identificador del objeto
     * @param nombre nombre que tiene la academia
-    * @param coordinador coordinador de la academia
+    * @param idCoordinador coordinador de la academia
     */
-  public Academia(Integer idAcademia, String nombre, String coordinador) {
+  public Academia(Integer idAcademia, String nombre, Integer idCoordinador) {
     this.idAcademia = idAcademia;
     this.nombre = nombre;
-    this.coordinador = coordinador;
+    this.idCoordinador = idCoordinador;
   }
 
   /**
@@ -63,16 +63,16 @@ public class Academia {
     * Retorna el coordinador de la academia
     * @return coordinador
     */
-  public String getCoordinador() {
-    return coordinador;
+  public Integer getIdCoordinador() {
+    return idCoordinador;
   }
 
   /**
     * Establece el coordinador de la academia
     * @param coordinador
     */
-  public void setCoordinador(String coordinador) {
-    this.coordinador = coordinador;
+  public void setIdCoordinador(Integer idCoordinador) {
+    this.idCoordinador = idCoordinador;
   }
 
 }

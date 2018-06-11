@@ -15,31 +15,6 @@ CREATE DATABASE SiAcad;
 
 USE SiAcad;
 
-CREATE TABLE Academia (
-    idAcademia int NOT NULL auto_increment,
-    nombre varchar(60),
-    PRIMARY KEY (idAcademia)
-);
-
-CREATE TABLE ExperienciaEducativa (
-    idExperienciaEducativa int NOT NULL auto_increment,
-    nombre varchar(70),
-    idAcademia int NOT NULL,
-    PRIMARY KEY (idExperienciaEducativa),
-    FOREIGN KEY (idAcademia) REFERENCES Academia(idAcademia)
-);
-
-CREATE TABLE Curso (
-    idCurso int NOT NULL auto_increment,
-    NRC varchar(15),
-    programaEducativo varchar(50),
-    bloque int,
-    seccion int,
-    idExperienciaEducativa int NOT NULL,
-    PRIMARY KEY (idCurso),
-    FOREIGN KEY (idExperienciaEducativa) REFERENCES ExperienciaEducativa(idExperienciaEducativa)
-);
-
 CREATE TABLE Rol (
     idRol int NOT NULL auto_increment,
     nombre varchar(20),
@@ -73,6 +48,34 @@ CREATE TABLE Maestro (
     FOREIGN KEY (idUsuarioAcademico) REFERENCES UsuarioAcademico(idUsuarioAcademico),
     FOREIGN KEY (idTipo) REFERENCES Tipo(idTipo)
 );
+
+CREATE TABLE Academia (
+    idAcademia int NOT NULL auto_increment,
+    nombre varchar(60),
+    idCoordinador int NOT NULL,
+    PRIMARY KEY (idAcademia, idCoordinador),
+    FOREIGN KEY (idCoordinador) REFERENCES Maestro(idUsuarioAcademico)
+);
+
+CREATE TABLE ExperienciaEducativa (
+    idExperienciaEducativa int NOT NULL auto_increment,
+    nombre varchar(70),
+    idAcademia int NOT NULL,
+    PRIMARY KEY (idExperienciaEducativa),
+    FOREIGN KEY (idAcademia) REFERENCES Academia(idAcademia)
+);
+
+CREATE TABLE Curso (
+    idCurso int NOT NULL auto_increment,
+    NRC varchar(15),
+    programaEducativo varchar(50),
+    bloque int,
+    seccion int,
+    idExperienciaEducativa int NOT NULL,
+    PRIMARY KEY (idCurso),
+    FOREIGN KEY (idExperienciaEducativa) REFERENCES ExperienciaEducativa(idExperienciaEducativa)
+);
+
 
 CREATE TABLE PeriodoC (
     idPeriodo int NOT NULL auto_increment,

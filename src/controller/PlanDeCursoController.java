@@ -154,6 +154,12 @@ public class PlanDeCursoController implements Initializable {
   private PlanDeCurso plandecurso;
 
   private List<Curso> cursosDelMaestro;
+
+  private Integer idMaestro;
+
+  public setIdMaestro(Integer idMaestro){
+    this.idMaestro = idMaestro;
+  }
   /**
    * Listener de la tabla personas
    */
