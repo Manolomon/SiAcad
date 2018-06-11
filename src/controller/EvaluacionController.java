@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextArea;
+import controller.dialog.EvaluacionCalendarioDialogController;
 //import controller.dialog.EvaluacionCalendarioDialogController;
 import java.io.IOException;
 import java.net.URL;
@@ -131,15 +132,15 @@ public class EvaluacionController implements Initializable {
     } catch (IOException ex) {
       Logger.getLogger(PlanDeCursoController.class.getName()).log(Level.SEVERE, null, ex);
     }
-    //EvaluacionCalendarioDialogController display = loader.getController();
+    EvaluacionCalendarioDialogController display = loader.getController();
     AnchorPane p = loader.getRoot();
     content.setBody(p);
     JFXDialog dialog = new JFXDialog(rootPane,content, JFXDialog.DialogTransition.CENTER);
     JFXButton aceptar = new JFXButton("ACEPTAR");
     
     aceptar.setOnAction((ActionEvent e) -> {
-      //Evaluacion evaluacion = display.crearEvaluacion();
-      //listaEvaluaciones.add(evaluacion);
+      Evaluacion evaluacion = display.crearEvaluacion();
+      listaEvaluaciones.add(evaluacion);
       dialog.close();
     });
 

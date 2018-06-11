@@ -32,7 +32,7 @@ public class EvaluacionCalendarioDialogController implements Initializable {
 
   }
 
-  public Evaluacion crearEvaluacion(Integer unidad) {
+  public Evaluacion crearEvaluacion() {
     Evaluacion evaluacion = new Evaluacion(Integer.parseInt(txtPorcentaje.getText()), txtCriterio.getText());
     return evaluacion;
   }

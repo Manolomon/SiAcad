@@ -196,36 +196,35 @@ public class PlanDeTrabajoController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     inicializarTablaActividad();
-    listaActividades.add(new Actividad("Holis", "mña", "matenme"));
-//    for (int i = 0; i < 17; i++) {
-//      FXMLLoader loader = new FXMLLoader();
-//      loader.setLocation(getClass().getResource("/view/AsistenteAReunion.fxml"));
-//      try {
-//        loader.load();
-//      } catch (IOException ex) {
-//        Logger.getLogger(MinutaDeReunionController.class.getName()).log(Level.SEVERE, null, ex);
-//      }
-//      AsistenteAReunionController display = loader.getController();
-//      AnchorPane pan = loader.getRoot();
-//      // display.asignarDatos(curso);
-//      listParticipantes.getItems().add(pan);
-//    }
-//
-//    String[] nombres = { "Requerimientos de Software", "Verificación y Validación de Software", "Principos de Diseño de Software"};
-//
-//    for (String nombre : nombres) {
-//      FXMLLoader loader = new FXMLLoader();
-//      loader.setLocation(getClass().getResource("/view/FormaDeEvaluacion.fxml"));
-//      try {
-//        loader.load();
-//      } catch (IOException ex) {
-//        Logger.getLogger(PlanDeTrabajoController.class.getName()).log(Level.SEVERE, null, ex);
-//      }
-//      EvaluacionController display = loader.getController();
-//      AnchorPane p = loader.getRoot();
-//      Tab tab = new Tab(nombre);
-//      //tab.setContent(p);
-//      tabPanelEE.getTabs().add(tab);
-//    }
+   for (int i = 0; i < 17; i++) {
+     FXMLLoader loader = new FXMLLoader();
+     loader.setLocation(getClass().getResource("/view/AsistenteAReunion.fxml"));
+     try {
+       loader.load();
+     } catch (IOException ex) {
+       Logger.getLogger(MinutaDeReunionController.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     AsistenteAReunionController display = loader.getController();
+     AnchorPane pan = loader.getRoot();
+     // display.asignarDatos(curso);
+     listParticipantes.getItems().add(pan);
+   }
+
+   String[] nombres = { "Requerimientos de Software", "Verificación y Validación de Software", "Principos de Diseño de Software"};
+
+   for (String nombre : nombres) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/view/FormaDeEvaluacion.fxml"));
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(PlanDeTrabajoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        EvaluacionController display = loader.getController();
+        StackPane p = loader.getRoot();
+        Tab tab = new Tab(nombre);
+        tab.setContent(p);
+        tabPanelEE.getTabs().add(tab);
+   }
   }
 }
