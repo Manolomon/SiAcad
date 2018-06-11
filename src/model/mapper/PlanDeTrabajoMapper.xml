@@ -52,8 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <insert id="guardarEEPlanDeTrabajo" parameterType="model.pojos.EEPlanTrabajo">
-        INSERT INTO eeplantrabajo (nombre,herramientas,idPlanDeTrabajo)
-        VALUES(#{nombre},#{herramientas},#{idPlanDeTrabajo})
+        INSERT INTO eeplantrabajo (idEEPlanTrabajo,nombre,herramientas,idPlanDeTrabajo)
+        VALUES(#{idEEPlanTrabajo},#{nombre},#{herramientas},#{idPlanDeTrabajo})
     </insert>
     
     <insert id="guardarEvaluacion" parameterType="model.pojos.Evaluacion">
@@ -67,8 +67,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
     
     <insert id="guardarObjetivoParticular" parameterType="model.pojos.ObjetivoParticular">
-        INSERT INTO objetivoparticular (objetivo,metas,idPlanTrabajo)
-        VALUES(#{objetivo},#{metas},#{idPlanDeTrabajo})
+        INSERT INTO objetivoparticular (idObjetivoParticular,objetivo,metas,idPlanTrabajo)
+        VALUES(#{idObjetivoParticular},#{objetivo},#{metas},#{idPlanDeTrabajo})
     </insert>
     
     <insert id="guardarActividad" parameterType="model.pojos.Actividad">

@@ -16,6 +16,7 @@ import com.jfoenix.controls.JFXTextArea;
 import controller.dialog.ActividadDialogController;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -40,6 +41,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.dao.PlanDeTrabajoDAO;
 import model.pojos.Actividad;
+import model.pojos.EEPlanTrabajo;
 import model.pojos.Evaluacion;
 import model.pojos.Maestro;
 import model.pojos.ObjetivoParticular;
@@ -111,9 +113,9 @@ public class PlanDeTrabajoController implements Initializable {
   
   private PlanDeTrabajo plandetrabajo;
 
-  private List<List<Evaluacion>> evaluacionesEE;
-
-  private List<Tema> listaTemasEE;
+  private List<Evaluacion> evaluacionesEE;
+  
+  private List<EEPlanTrabajo> listaEE;
 
   private final ListChangeListener<Actividad> selectorTablaActividades=new ListChangeListener<Actividad>(){@Override public void onChanged(ListChangeListener.Change<?extends Actividad>c){ponerActividadSeleccionada();}};
 
@@ -166,25 +168,54 @@ public class PlanDeTrabajoController implements Initializable {
   }
 
   private void obtenerEELlenadas() {
+    int contadorEE = PlanDeTrabajoDAO.contarEEPlanTrabajo();
     ObservableList<Tab> tabs = tabPanelEE.getTabs();
     for (Tab t : tabs) {
+      contadorEE++;
+      evaluacionesEE = new ArrayList<>();
+      EEPlanTrabajo ee = new EEPlanTrabajo();
+      ee.setNombre(t.getText());
+      ee.setIdEEPlanTrabajo(contadorEE);
+      ee.setIdEEPlanTrabajo(plandetrabajo.getIdPlanDetrabajo());
+      if(!PlanDeTrabajoDAO.guardarEEPlanTrabajo(ee)){
+          mensaje("Error","Error en la conexion con la base de datos");
+      }
+      Tema tema = new Tema();
+      tema.setIdEEPlanDeTrabajo(ee.getIdEEPlanTrabajo());
       System.out.println("Holis");
       StackPane contenido = (StackPane) t.getContent();
       AnchorPane contenedor = (AnchorPane) contenido.getChildren().get(0);
       for (Node node : contenedor.getChildren()) {
          if (node.getAccessibleText() != null) {
           switch (node.getAccessibleText()) {
-          case "Tablita"://Actividad que vayas a hacer con la tablita
+          case "Tablita":
+           // ((TableView)node).getChildrenUnmodifiable().forEach(evaluacion -> {intento de for con los hijos de la tabla
+           // }); por cada evaluacion agregada, hay que setearle el ID de la ee del plan de trabajo y agregarla
+           //     a la lista evaluacionesEE
             break;
           case "Primer Parcial"://Con los textfields
+            tema.setPrimerParcial(
+                ((JFXTextArea)node).getText());
             break;
           case "Segundo Parcial":
+            tema.setSegundoParcial(
+                ((JFXTextArea)node).getText());
             break;
           case "Posterior":
+            tema.setResto(
+                ((JFXTextArea)node).getText());
             break;
           }
         }
       }
+      if(!PlanDeTrabajoDAO.guardarTema(tema)) {
+          mensaje("Error","Error en la conexion con la base de datos");
+      }
+      evaluacionesEE.forEach(eeplantrabajo -> {
+          if(!PlanDeTrabajoDAO.guardarEvaluacion(eeplantrabajo)) {
+              mensaje("Error","Error en la conexion con la base de datos");
+          }
+      });
     }
   }
 
@@ -197,6 +228,7 @@ public class PlanDeTrabajoController implements Initializable {
   void clickGuardar(ActionEvent event) {
       guardarActividades();
       guardarParticipantes();
+      obtenerEELlenadas();
       if (!PlanDeTrabajoDAO.guardarPlanDeTrabajo(plandetrabajo)) {
           mensaje("Error","Error en la conexion con la base de datos");
       }
