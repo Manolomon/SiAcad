@@ -117,6 +117,15 @@ public class PlanDeTrabajoController implements Initializable {
   
   private List<EEPlanTrabajo> listaEE;
 
+  private Integer idCoordinador;
+
+  private Integer idAcademia;
+
+  public void iniciarDatosUsuario(Integer idCoordinador, Integer idAcademia){
+    this.idCoordinador = idCoordinador;
+    this.idAcademia = idAcademia;
+  }
+
   private final ListChangeListener<Actividad> selectorTablaActividades=new ListChangeListener<Actividad>(){@Override public void onChanged(ListChangeListener.Change<?extends Actividad>c){ponerActividadSeleccionada();}};
 
   public Actividad getTablaActividadSeleccionada() {

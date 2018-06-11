@@ -157,7 +157,7 @@ public class PlanDeCursoController implements Initializable {
 
   private Integer idMaestro;
 
-  public setIdMaestro(Integer idMaestro){
+  public void setIdMaestro(Integer idMaestro){
     this.idMaestro = idMaestro;
   }
   /**
@@ -435,7 +435,7 @@ public class PlanDeCursoController implements Initializable {
    */
   public void cargarCursos() {
     try {
-      //cursosDelMaestro = PlanDeCursoDAO.obtenerCursoesDeMaestro(idMaestro)//TODO: Sacada de Datos
+      cursosDelMaestro = PlanDeCursoDAO.obtenerCursoesDeMaestro(this.idMaestro);//TODO: Sacada de Datos
     } catch (Exception e) {
       mensaje("Error", "Error en la conexión a la Base de Datos");
     }

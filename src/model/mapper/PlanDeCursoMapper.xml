@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="PlanDeCurso">
     <select id="contarPlanes" resultType="Integer">
-        SELECT COUNT (idPlanDeCurso) FROM plandecurso;
+        SELECT COUNT(idPlanDeCurso) FROM plandecurso;
     </select>
     
     <select id="obtenerPlanDeCurso" resultType="model.pojos.PlanDeCurso" parameterType="Integer">

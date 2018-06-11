@@ -31,6 +31,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.dao.AcademiaDAO;
+import model.pojos.Academia;
 import model.pojos.UsuarioAcademico;
 
 /**
@@ -88,6 +89,8 @@ public class DashboardController implements Initializable {
 
   private UsuarioAcademico usuario;
 
+  private Integer idAcademia;
+
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     drawer.setResizeContent(true);
@@ -104,7 +107,9 @@ public class DashboardController implements Initializable {
   public void cargarUsuario(UsuarioAcademico usuario) {
     this.usuario = usuario;
     lblnombreMaestro.setText(usuario.getNombre() + " " + usuario.getApellidos());
-    lblAcademia.setText(AcademiaDAO.obtenerCoordinacion(usuario.getIdUsuarioAcademico()).getNombre());
+    Academia academia = AcademiaDAO.obtenerCoordinacion(usuario.getIdUsuarioAcademico());
+    idAcademia = academia.getIdAcademia();
+    lblAcademia.setText(academia.getNombre());
   }
 
   public void cargarPantalla(String nombrePantalla) {
@@ -117,10 +122,12 @@ public class DashboardController implements Initializable {
     }
     switch (nombrePantalla) {
     case "PlanDeCurso":
-      PlanDeCursoController display = loader.getController();
-      display.setIdMaestro(usuario.getIdUsuarioAcademico());
+      PlanDeCursoController planCurso = loader.getController();
+      planCurso.setIdMaestro(usuario.getIdUsuarioAcademico());
       break;
     case "PlanDeTrabajo":
+      PlanDeTrabajoController planTrabajo = loader.getController();
+      planTrabajo.iniciarDatosUsuario(usuario.getIdUsuarioAcademico(), this.idAcademia);
       break;
     case "MinutaDeReunion":
       break;
