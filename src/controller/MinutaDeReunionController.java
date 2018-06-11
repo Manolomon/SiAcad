@@ -197,7 +197,7 @@ public class MinutaDeReunionController implements Initializable {
       public Reunion fromString(String string) {
         throw new UnsupportedOperationException("Not supported yet.");
       }
-
+      
     });
   }
 

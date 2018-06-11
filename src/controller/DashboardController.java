@@ -120,17 +120,15 @@ public class DashboardController implements Initializable {
     } catch (IOException ex) {
       Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
     }
-    switch (nombrePantalla) {
-    case "PlanDeCurso":
+    if(nombrePantalla == "PlanDeCurso") {
       PlanDeCursoController planCurso = loader.getController();
       planCurso.setIdMaestro(usuario.getIdUsuarioAcademico());
-      break;
-    case "PlanDeTrabajo":
+    }
+    if(nombrePantalla == "PlanDeTrabajo"){
       PlanDeTrabajoController planTrabajo = loader.getController();
       planTrabajo.iniciarDatosUsuario(usuario.getIdUsuarioAcademico(), this.idAcademia);
-      break;
-    case "MinutaDeReunion":
-      break;
+    }
+    if(nombrePantalla == "MinutaDeReunion"){
     }
     // FXMLVerMisCursosController display = loader.getController();
     // display.asignarDatos(user);

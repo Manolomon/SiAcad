@@ -39,7 +39,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.dao.AcademiaDAO;
 import model.dao.PlanDeTrabajoDAO;
+import model.pojos.Academia;
 import model.pojos.Actividad;
 import model.pojos.EEPlanTrabajo;
 import model.pojos.Evaluacion;
@@ -105,7 +107,7 @@ public class PlanDeTrabajoController implements Initializable {
   @FXML
   private JFXTextArea txtObjetivoGeneral;
 
-  private List<Maestro> listaParticipantes;
+  private List<Maestro> participantes;
 
   private ObservableList<Actividad> listaActividades;
 
@@ -119,11 +121,30 @@ public class PlanDeTrabajoController implements Initializable {
 
   private Integer idCoordinador;
 
-  private Integer idAcademia;
+  private Integer idAcademia = 1;
 
   public void iniciarDatosUsuario(Integer idCoordinador, Integer idAcademia){
     this.idCoordinador = idCoordinador;
     this.idAcademia = idAcademia;
+    inicializarTablaActividad();
+    cargarParticipantes();
+    System.out.println(idAcademia);
+   String[] nombres = { "Requerimientos de Software", "Verificación y Validación de Software", "Principos de Diseño de Software"};
+
+    for (String nombre : nombres) {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("/view/FormaDeEvaluacion.fxml"));
+      try {
+        loader.load();
+      } catch (IOException ex) {
+        Logger.getLogger(PlanDeTrabajoController.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      EvaluacionController display = loader.getController();
+      StackPane p = loader.getRoot();
+      Tab tab = new Tab(nombre);
+      tab.setContent(p);
+      tabPanelEE.getTabs().add(tab);
+    }
   }
 
   private final ListChangeListener<Actividad> selectorTablaActividades=new ListChangeListener<Actividad>(){@Override public void onChanged(ListChangeListener.Change<?extends Actividad>c){ponerActividadSeleccionada();}};
@@ -145,7 +166,29 @@ public class PlanDeTrabajoController implements Initializable {
     if (act != null) {
     }
   }
-
+  
+  public void cargarParticipantes() {
+    listParticipantes.getItems().clear();
+    try {
+      participantes = AcademiaDAO.obtenerMaestros(idAcademia);
+    } catch (Exception e) {
+      mensaje("Error", "Error en la conexión a la Base de Datos");
+    }
+    for (Maestro maestro : participantes) {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("/view/AsistenteAReunion.fxml"));
+      try {
+        loader.load();
+      } catch (IOException ex) {
+        Logger.getLogger(PlanDeTrabajoController.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      AsistenteAReunionController display = loader.getController();
+      AnchorPane panel = loader.getRoot();
+      display.llenarDatosAsistente(maestro.getNombre() + " " + maestro.getApellidos());
+      listParticipantes.getItems().add(panel);
+    }
+  }
+  
   private void inicializarTablaActividad() {
     actividadActividad.setCellValueFactory(new PropertyValueFactory<Actividad, String>("accion"));
     actividadFechas.setCellValueFactory(new PropertyValueFactory<Actividad, String>("fecha"));
@@ -167,7 +210,7 @@ public class PlanDeTrabajoController implements Initializable {
   }
   
   private void guardarParticipantes() {
-      listaParticipantes.forEach(participante ->{
+      participantes.forEach(participante ->{
           if(!PlanDeTrabajoDAO.guardarParticipante(
             new Participante(
                     plandetrabajo.getIdPlanDetrabajo(),participante.getIdUsuarioAcademico()))) {
@@ -293,24 +336,6 @@ public class PlanDeTrabajoController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    inicializarTablaActividad();
-
-   String[] nombres = { "Requerimientos de Software", "Verificación y Validación de Software", "Principos de Diseño de Software"};
-
-    for (String nombre : nombres) {
-      FXMLLoader loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("/view/FormaDeEvaluacion.fxml"));
-      try {
-        loader.load();
-      } catch (IOException ex) {
-        Logger.getLogger(PlanDeTrabajoController.class.getName()).log(Level.SEVERE, null, ex);
-      }
-      EvaluacionController display = loader.getController();
-      StackPane p = loader.getRoot();
-      Tab tab = new Tab(nombre);
-      tab.setContent(p);
-      tabPanelEE.getTabs().add(tab);
-    }
   }
   
   /**

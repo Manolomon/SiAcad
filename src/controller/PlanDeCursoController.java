@@ -159,6 +159,14 @@ public class PlanDeCursoController implements Initializable {
 
   public void setIdMaestro(Integer idMaestro){
     this.idMaestro = idMaestro;
+        inicializarTablaPlaneacion();
+    inicializarTablaBibliografia();
+    inicializarTablaCalendario();
+    //listaEvaluaciones.add(new Evaluacion_PlanCurso(1, "Muchas cosas huuuu", 10, "Toda la vida"));
+    plandecurso = new PlanDeCurso();
+    plandecurso.setIdPlanDeCurso(PlanDeCursoDAO.obteneridPlanCurso()+1);
+    plandecurso.setFormato("plancurso");
+    cargarCursos();
   }
   /**
    * Listener de la tabla personas
@@ -282,6 +290,7 @@ public class PlanDeCursoController implements Initializable {
   
   private void guardarBibliografias() {
       listaBibliografias.forEach((bib) -> {
+          bib.setIdPlanDeCurso(2);
           if (!PlanDeCursoDAO.guardarBibliografia(bib)) {
               mensaje("Error","Error en la conexion con la base de datos");
           }
@@ -290,6 +299,7 @@ public class PlanDeCursoController implements Initializable {
   
   private void guardarPlaneaciones() {
       listaPlaneaciones.forEach((plan) -> {
+          plan.setIdPlanDeCurso(2);
           if (!PlanDeCursoDAO.guardarPlaneacion(plan)) {
               mensaje("Error","Error en la conexion con la base de datos");
           }
@@ -298,6 +308,7 @@ public class PlanDeCursoController implements Initializable {
   
   private void guardarEvaluaciones() {
       listaEvaluaciones.forEach((eval) -> {
+          eval.setIdPlanDeCurso(2);
           if (!PlanDeCursoDAO.guardarEvaluacion(eval)) {
               mensaje("Error","Error en la conexion con la base de datos");
           }
@@ -449,7 +460,8 @@ public class PlanDeCursoController implements Initializable {
         if (curso == null) {
           return "";
         } else {
-          return PlanDeCursoDAO.obtenerNombreCurso(curso.getIdExperienciaEducativa()); //TODO: No sé si dejar el NRC o sacar el nombre de la EE
+          String nombrecurso = PlanDeCursoDAO.obtenerNombreCurso(curso.getIdExperienciaEducativa());
+          return nombrecurso; //TODO: No sé si dejar el NRC o sacar el nombre de la EE
         }
       }
 
@@ -500,13 +512,6 @@ public class PlanDeCursoController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    inicializarTablaPlaneacion();
-    inicializarTablaBibliografia();
-    inicializarTablaCalendario();
-    //listaEvaluaciones.add(new Evaluacion_PlanCurso(1, "Muchas cosas huuuu", 10, "Toda la vida"));
-    plandecurso = new PlanDeCurso();
-    plandecurso.setIdPlanDeCurso(PlanDeCursoDAO.contarPlanes()+1);
-    plandecurso.setFormato("plancurso");
   }
 
 }

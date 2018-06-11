@@ -17,12 +17,12 @@ import org.apache.ibatis.session.SqlSession;
 
 public class PlanDeCursoDAO {
     
-    public static Integer contarPlanes() {
+    public static Integer obteneridPlanCurso() {
         Integer num = null;
         SqlSession conn = null;
         try {
             conn = MyBatisUtils.getSession();
-            num = new Integer(conn.selectOne("PlanDeCurso.contarPlanes"));
+            num = conn.selectOne("PlanDeCurso.obteneridPlanCurso");
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
