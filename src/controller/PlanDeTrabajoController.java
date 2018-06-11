@@ -97,42 +97,17 @@ public class PlanDeTrabajoController implements Initializable {
   private JFXTextArea txtObjetivoGeneral;
 
   private List<Maestro> listaParticipantes;
-
-  ////////////////////////////////////////////////////////////////////////////
-
-  @FXML
-  private JFXButton btnMenosEvaluacion;
-
-  @FXML
-  private JFXButton btnMasEvaluacion;
-
-  @FXML
-  private JFXTextArea txtPrimerParcial;
-
-  @FXML
-  private JFXTextArea txtSegundoParcial;
-
-  @FXML
-  private JFXTextArea txtPosterior;
-
-  @FXML
-  private TableView<Evaluacion> tableEvaluacion;
-
-  @FXML
-  private TableColumn<Evaluacion, String> evaluacionCriterio;
-
-  @FXML
-  private TableColumn<Evaluacion, Integer> evaluacionPorcentaje;
-
-  private ObservableList<Evaluacion> listaEvaluaciones;
-
-  private int posicionTablaEvalucaion;
-
+  
   private ObservableList<Actividad> listaActividades;
 
   private int posicionTablaActividad;
 
-  private final ListChangeListener<Actividad> selectorTablaActividades = new ListChangeListener<Actividad>(){@Override public void onChanged(ListChangeListener.Change<?extends Actividad>c){ponerActividadSeleccionada();}};
+  private final ListChangeListener<Actividad> selectorTablaActividades = new ListChangeListener<Actividad>(){
+      @Override 
+      public void onChanged(ListChangeListener.Change<?extends Actividad>c){
+          ponerActividadSeleccionada();
+      }
+  };
   
   public Actividad getTablaActividadSeleccionada() {
     if (tableActividad != null) {
@@ -199,7 +174,9 @@ public class PlanDeTrabajoController implements Initializable {
 
   @FXML
   void clickMenosActividad(ActionEvent event) {
-
+      if (listaActividades.size() > 0) {
+      listaActividades.remove(listaActividades.size() - 1);
+    }
   }
 
   @FXML
@@ -219,36 +196,36 @@ public class PlanDeTrabajoController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     inicializarTablaActividad();
-    for (int i = 0; i < 17; i++) {
-      FXMLLoader loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("/view/AsistenteAReunion.fxml"));
-      try {
-        loader.load();
-      } catch (IOException ex) {
-        Logger.getLogger(MinutaDeReunionController.class.getName()).log(Level.SEVERE, null, ex);
-      }
-      AsistenteAReunionController display = loader.getController();
-      AnchorPane pan = loader.getRoot();
-      // display.asignarDatos(curso);
-      listParticipantes.getItems().add(pan);
-    }
-
-    String[] nombres = { "Requerimientos de Software", "Verificación y Validación de Software", "Principos de Diseño de Software"};
-
-    for (String nombre : nombres) {
-//    FXMLLoader loader = new FXMLLoader();
-//    loader.setLocation(getClass().getResource("/view/FormaDeEvaluacion.fxml"));
-//    try {
-//    loader.load();
-//    } catch (IOException ex) {
-//    Logger.getLogger(PlanDeTrabajoController.class.getName()).log(Level.SEVERE,
-//    null, ex);
+    listaActividades.add(new Actividad("Holis", "mña", "matenme"));
+//    for (int i = 0; i < 17; i++) {
+//      FXMLLoader loader = new FXMLLoader();
+//      loader.setLocation(getClass().getResource("/view/AsistenteAReunion.fxml"));
+//      try {
+//        loader.load();
+//      } catch (IOException ex) {
+//        Logger.getLogger(MinutaDeReunionController.class.getName()).log(Level.SEVERE, null, ex);
+//      }
+//      AsistenteAReunionController display = loader.getController();
+//      AnchorPane pan = loader.getRoot();
+//      // display.asignarDatos(curso);
+//      listParticipantes.getItems().add(pan);
 //    }
-    //AsistenteAReunionController display = loader.getController();
-    //AnchorPane p = loader.getRoot();
-    Tab tab = new Tab(nombre);
-    //tab.setContent(p);
-    tabPanelEE.getTabs().add(tab);
-    }
+//
+//    String[] nombres = { "Requerimientos de Software", "Verificación y Validación de Software", "Principos de Diseño de Software"};
+//
+//    for (String nombre : nombres) {
+//      FXMLLoader loader = new FXMLLoader();
+//      loader.setLocation(getClass().getResource("/view/FormaDeEvaluacion.fxml"));
+//      try {
+//        loader.load();
+//      } catch (IOException ex) {
+//        Logger.getLogger(PlanDeTrabajoController.class.getName()).log(Level.SEVERE, null, ex);
+//      }
+//      EvaluacionController display = loader.getController();
+//      AnchorPane p = loader.getRoot();
+//      Tab tab = new Tab(nombre);
+//      //tab.setContent(p);
+//      tabPanelEE.getTabs().add(tab);
+//    }
   }
 }

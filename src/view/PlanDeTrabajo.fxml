@@ -86,7 +86,7 @@
                   </JFXButton>
                   <JFXTextArea fx:id="txtObjetivoParticular" focusColor="#d4218d" labelFloat="true" layoutX="693.0" layoutY="86.0" prefHeight="69.0" prefWidth="337.0" promptText="Objetivo particular" unFocusColor="#999999" />
                   <JFXTextArea fx:id="txtMeta" focusColor="#d4218d" labelFloat="true" layoutX="693.0" layoutY="204.0" prefHeight="69.0" prefWidth="337.0" promptText="Meta" unFocusColor="#999999" />
-                  <TableView layoutX="14.0" layoutY="64.0" prefHeight="303.0" prefWidth="660.0">
+                  <TableView fx:id="tableActividad" layoutX="14.0" layoutY="64.0" prefHeight="303.0" prefWidth="660.0">
                     <columns>
                       <TableColumn fx:id="actividadActividad" prefWidth="275.0" text="Actividad / Acciones" />
                       <TableColumn fx:id="actividadFechas" minWidth="0.0" prefWidth="140.0" text="Fechas / Semana" />

@@ -24,13 +24,13 @@ import model.pojos.Actividad;
 public class ActividadDialogController implements Initializable {
     
   @FXML
-  private JFXTextField txtFechas;
+    private JFXTextField txtFechas;
 
-  @FXML
-  private JFXTextArea txtFormaOperar;
+    @FXML
+    private JFXTextArea txtFormaOperar;
 
-  @FXML
-  private JFXTextArea txtAcciones;
+    @FXML
+    private JFXTextArea txtAcciones;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
