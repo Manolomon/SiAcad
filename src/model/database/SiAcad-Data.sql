@@ -61,6 +61,11 @@ INSERT INTO periodoc VALUES (null, 3, 3, '2018-06-06', '2019-06-06');
 
 INSERT INTO reunion VALUES (null, 1, "Pues la reunion, no?",'2018-06-05','2018-06-05', "No pues nada", "FEI");
 
+insert into eeplantrabajo values (1,"placeholder","placeholder",1);
+insert into plandetrabajo values (1,"placeholder","2018-01-01","placeholder","placeholder");
+insert into objetivoparticular values (1,"placeholder","placeholder",1);
+insert into plandecurso values (1, "placeholder", "placeholder", "2018-01-01", 1);
+
 /* INSERT INTO minutadeacademia VALUES (null, '2018-06-06', '16:45', "Pues nada mas pasar el rato, estuvo chido", "la familia, el medio ambiente, AMLO2018, Trump, la inseguridad","Estariamos mejor con ya sabes quien");
 
 INSERT INTO reunion VALUES (null, 1, "Pues la reunion, no?",'2018-06-05','2018-06-05', "No pues nada", "FEI",null);

@@ -124,6 +124,9 @@ public class PlanDeTrabajoController implements Initializable {
   private Integer idAcademia = 1;
 
   public void iniciarDatosUsuario(Integer idCoordinador, Integer idAcademia){
+    plandetrabajo = new PlanDeTrabajo();
+    plandetrabajo.setIdPlanDetrabajo(PlanDeTrabajoDAO.obteneridPlanTrabajo()+1);
+    plandetrabajo.setFormato("plantrabajo");
     this.idCoordinador = idCoordinador;
     this.idAcademia = idAcademia;
     inicializarTablaActividad();
@@ -199,7 +202,7 @@ public class PlanDeTrabajoController implements Initializable {
   
   private void guardarActividades() {
       ObjetivoParticular objetivoPart = new ObjetivoParticular();
-      objetivoPart.setIdObjetivoParticular(PlanDeTrabajoDAO.contarObjetivosParticulares()+1);
+      objetivoPart.setIdObjetivoParticular(PlanDeTrabajoDAO.obteneridObjetivoParticular()+1);
       objetivoPart.setMetas(txtMeta.getText());
       objetivoPart.setObjetivo(txtObjetivoParticular.getText());
       listaActividades.forEach(actividad ->{
@@ -209,7 +212,7 @@ public class PlanDeTrabajoController implements Initializable {
       });
   }
   
-  private void guardarParticipantes() {
+  /*private void guardarParticipantes() {
       participantes.forEach(participante ->{
           if(!PlanDeTrabajoDAO.guardarParticipante(
             new Participante(
@@ -217,17 +220,17 @@ public class PlanDeTrabajoController implements Initializable {
             mensaje("Error","Error en la conexion con la base de datos");
           }
       });
-  }
+  }*/
 
   private void obtenerEELlenadas() {
-    int contadorEE = PlanDeTrabajoDAO.contarEEPlanTrabajo();
+    int contadorEE = PlanDeTrabajoDAO.obteneridEEPlanTrabajo();
     ObservableList<Tab> tabs = tabPanelEE.getTabs();
     for (Tab t : tabs) {
       contadorEE++;
       evaluacionesEE = new ArrayList<>();
       EEPlanTrabajo ee = new EEPlanTrabajo();
       ee.setNombre(t.getText());
-      ee.setIdEEPlanTrabajo(contadorEE);
+      ee.setIdEEPlanTrabajo(PlanDeTrabajoDAO.obteneridEEPlanTrabajo()+1);
       ee.setIdEEPlanTrabajo(plandetrabajo.getIdPlanDetrabajo());
       if(!PlanDeTrabajoDAO.guardarEEPlanTrabajo(ee)){
           mensaje("Error","Error en la conexion con la base de datos");
@@ -279,7 +282,7 @@ public class PlanDeTrabajoController implements Initializable {
   @FXML
   void clickGuardar(ActionEvent event) {
       guardarActividades();
-      guardarParticipantes();
+      //guardarParticipantes();
       obtenerEELlenadas();
       if (!PlanDeTrabajoDAO.guardarPlanDeTrabajo(plandetrabajo)) {
           mensaje("Error","Error en la conexion con la base de datos");

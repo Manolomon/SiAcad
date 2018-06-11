@@ -8,27 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 import model.MyBatisUtils;
 import model.pojos.Actividad;
-import model.pojos.Bibliografia;
-import model.pojos.Curso;
 import model.pojos.EEPlanTrabajo;
 import model.pojos.Evaluacion;
-import model.pojos.Evaluacion_PlanCurso;
 import model.pojos.Maestro;
 import model.pojos.ObjetivoParticular;
 import model.pojos.Participante;
-import model.pojos.PlanDeCurso;
 import model.pojos.PlanDeTrabajo;
-import model.pojos.Planeacion;
 import model.pojos.Tema;
 import org.apache.ibatis.session.SqlSession;
 
 public class PlanDeTrabajoDAO {
-    public static Integer contarPlanes() {
+    public static Integer obteneridPlanTrabajo() {
         Integer num = null;
         SqlSession conn = null;
         try {
             conn = MyBatisUtils.getSession();
-            num = new Integer(conn.selectOne("PlanDeTrabajo.contarPlanes"));
+            num = conn.selectOne("PlanDeTrabajo.obteneridPlanTrabajo");
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -39,12 +34,12 @@ public class PlanDeTrabajoDAO {
         return num;
     }
     
-    public static Integer contarObjetivosParticulares() {
+    public static Integer obteneridObjetivoParticular() {
         Integer num = null;
         SqlSession conn = null;
         try {
             conn = MyBatisUtils.getSession();
-            num = new Integer(conn.selectOne("PlanDeTrabajo.contarObjetivosParticulares"));
+            num = conn.selectOne("PlanDeTrabajo.obteneridObjetivoParticular");
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -55,12 +50,12 @@ public class PlanDeTrabajoDAO {
         return num;
     }
     
-    public static Integer contarEEPlanTrabajo() {
+    public static Integer obteneridEEPlanTrabajo() {
         Integer num = null;
         SqlSession conn = null;
         try {
             conn = MyBatisUtils.getSession();
-            num = new Integer(conn.selectOne("PlanDeTrabajo.contarEEPlanTrabajo"));
+            num = conn.selectOne("PlanDeTrabajo.obteneridEEPlanTrabajo");
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -70,6 +65,7 @@ public class PlanDeTrabajoDAO {
         }
         return num;
     }
+    
     /**
      * Obtener un plan de curso en especifico
      * @param idCurso curso del cual sacar el plan de curso
