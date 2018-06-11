@@ -57,13 +57,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
     
     <insert id="guardarEvaluacion" parameterType="model.pojos.Evaluacion">
-        INSERT INTO evaluacion_plancurso (porcentaje,instrumento, idEEPlanTrabajo)
+        INSERT INTO evaluacion (porcentaje,instrumento, idEEPlanTrabajo)
         VALUES(#{porcentaje},#{instrumento},#{idEEPlanTrabajo})
     </insert>
     
      <insert id="guardarTema" parameterType="model.pojos.Tema">
-        INSERT INTO evaluacion_plancurso (primerParcial,segundoParcial, resto, idEEPlanTrabajo)
-        VALUES(#{porcentaje},#{instrumento},#{idEEPlanDeTrabajo})
+        INSERT INTO tema (primerParcial,segundoParcial, resto, idEEPlanTrabajo)
+        VALUES(#{primerParcial},#{segundoParcial},#{resto},#{idEEPlanDeTrabajo})
     </insert>
     
     <insert id="guardarObjetivoParticular" parameterType="model.pojos.ObjetivoParticular">
@@ -82,7 +82,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
     
     <insert id="guardarPlanDeTrabajo" parameterType="model.pojos.PlanDeTrabajo">
-        INSERT INTO plandecurso (formato, fechaAprobacion, objetivoGeneral, programaEducativo)
+        INSERT INTO plandetrabajo (formato, fechaAprobacion, objetivoGeneral, programaEducativo)
         VALUES(#{formato},#{fechaAprobacion},#{objetivoGeneral},#{programaEducativo})
     </insert>
 </mapper>

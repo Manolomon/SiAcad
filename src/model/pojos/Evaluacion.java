@@ -11,7 +11,7 @@ public class Evaluacion {
   private Integer idEvaluacion;
   private SimpleIntegerProperty porcentaje = new SimpleIntegerProperty();
   private SimpleStringProperty instrumento = new SimpleStringProperty();
-  private Integer idPlanDeTrabajo;
+  private Integer idEEPlanTrabajo;
 
   /**
     * Constructor por default de la clase
@@ -35,7 +35,7 @@ public class Evaluacion {
         this.idEvaluacion = idEvaluacion;
         this.porcentaje = new SimpleIntegerProperty(porcentaje);
         this.instrumento = new SimpleStringProperty(instrumento);
-        this.idPlanDeTrabajo = idPlanDeTrabajo;
+        this.idEEPlanTrabajo = idPlanDeTrabajo;
     }
 
     /**
@@ -86,21 +86,15 @@ public class Evaluacion {
         this.instrumento = new SimpleStringProperty(instrumento);
     }
 
-    /**
-    * Retorna el identificador del plan de trabajo asociado a la evaluacion
-    * @return idPlanDeTrabajo
-    */
-    public Integer getIdPlanDeTrabajo() {
-        return idPlanDeTrabajo;
+    public Integer getIdEEPlanTrabajo() {
+        return idEEPlanTrabajo;
     }
 
-    /**
-    * Establece el identificador del plan de trabajo asociado a la evaluacion
-    * @param idPlanDeTrabajo
-    */
-    public void setIdPlanDeTrabajo(Integer idPlanDeTrabajo) {
-        this.idPlanDeTrabajo = idPlanDeTrabajo;
+    public void setIdEEPlanTrabajo(Integer idEEPlanTrabajo) {
+        this.idEEPlanTrabajo = idEEPlanTrabajo;
     }
+
+    
 
   
 }

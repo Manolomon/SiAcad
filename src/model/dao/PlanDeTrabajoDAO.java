@@ -339,7 +339,7 @@ public class PlanDeTrabajoDAO {
         SqlSession conn = null;
         try {
             conn = MyBatisUtils.getSession();
-            conn.insert("PlanDeCurso.guardarPlanDeCurso", plan);
+            conn.insert("PlanDeTrabajo.guardarPlanDeTrabajo", plan);
             conn.commit();
             return true;
         } catch (Exception ex) {
