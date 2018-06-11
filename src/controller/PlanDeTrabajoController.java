@@ -24,6 +24,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,9 +37,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.dao.PlanDeTrabajoDAO;
 import model.pojos.Actividad;
 import model.pojos.Evaluacion;
 import model.pojos.Maestro;
+import model.pojos.ObjetivoParticular;
+import model.pojos.Participante;
+import model.pojos.PlanDeTrabajo;
 
 /**
  * @author Manolo Pérez
@@ -101,6 +106,8 @@ public class PlanDeTrabajoController implements Initializable {
   private ObservableList<Actividad> listaActividades;
 
   private int posicionTablaActividad;
+  
+  private PlanDeTrabajo plandetrabajo;
 
   private final ListChangeListener<Actividad> selectorTablaActividades = new ListChangeListener<Actividad>(){
       @Override 
@@ -134,6 +141,28 @@ public class PlanDeTrabajoController implements Initializable {
     listaActividades = FXCollections.observableArrayList();
     tableActividad.setItems(listaActividades);
   }
+  
+  private void guardarActividades() {
+      ObjetivoParticular objetivoPart = new ObjetivoParticular();
+      objetivoPart.setIdObjetivoParticular(PlanDeTrabajoDAO.contarObjetivosParticulares()+1);
+      objetivoPart.setMetas(txtMeta.getText());
+      objetivoPart.setObjetivo(txtObjetivoParticular.getText());
+      listaActividades.forEach(actividad ->{
+          if(!PlanDeTrabajoDAO.guardarActividad(actividad)) {
+              mensaje("Error","Error en la conexion con la base de datos");
+          }
+      });
+  }
+  
+  private void guardarParticipantes() {
+      listaParticipantes.forEach(participante ->{
+          if(!PlanDeTrabajoDAO.guardarParticipante(
+            new Participante(
+                    plandetrabajo.getIdPlanDetrabajo(),participante.getIdUsuarioAcademico()))) {
+            mensaje("Error","Error en la conexion con la base de datos");
+          }
+      });
+  }
 
   @FXML
   void clickEnviar(ActionEvent event) {
@@ -142,7 +171,11 @@ public class PlanDeTrabajoController implements Initializable {
 
   @FXML
   void clickGuardar(ActionEvent event) {
-
+      guardarActividades();
+      guardarParticipantes();
+      if (!PlanDeTrabajoDAO.guardarPlanDeTrabajo(plandetrabajo)) {
+          mensaje("Error","Error en la conexion con la base de datos");
+      }
   }
 
   @FXML
@@ -208,8 +241,11 @@ public class PlanDeTrabajoController implements Initializable {
      AnchorPane pan = loader.getRoot();
      // display.asignarDatos(curso);
      listParticipantes.getItems().add(pan);
+     plandetrabajo = new PlanDeTrabajo();
+     plandetrabajo.setIdPlanDetrabajo(PlanDeTrabajoDAO.contarPlanes()+1);
    }
 
+   
    String[] nombres = { "Requerimientos de Software", "Verificación y Validación de Software", "Principos de Diseño de Software"};
 
    for (String nombre : nombres) {
@@ -226,5 +262,28 @@ public class PlanDeTrabajoController implements Initializable {
         tab.setContent(p);
         tabPanelEE.getTabs().add(tab);
    }
+  }
+  
+  /**
+   * Inicialización y muestra de un JFXDialog al centro de la pantalla, mandando
+   * una advertencia a alguna operación
+   * 
+   * @param head Título del dialog
+   * @param body Texto principal del dialog
+   */
+  public void mensaje(String head, String body) {
+    JFXDialogLayout content = new JFXDialogLayout();
+    content.setHeading(new Text(head));
+    content.setBody(new Text(body));
+    JFXDialog dialog = new JFXDialog(rootPane, content, JFXDialog.DialogTransition.CENTER);
+    JFXButton aceptar = new JFXButton("ACEPTAR");
+    aceptar.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent e) {
+        dialog.close();
+      }
+    });
+    content.setActions(aceptar);
+    dialog.show();
   }
 }

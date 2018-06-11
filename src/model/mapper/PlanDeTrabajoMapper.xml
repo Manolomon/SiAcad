@@ -4,6 +4,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="PlanDeTrabajo">
+    <select id="contarPlanes" resultType="Integer">
+        SELECT COUNT (idPlanDeTrabajo) FROM plandetrabajo;
+    </select>
+    
+    <select id="contarObjetivosParticulares" resultType="Integer">
+        SELECT COUNT (idObjetivoParticular) FROM objetivoparticular;
+    </select>
+    
+    <select id="contarEEPlanTrabajo" resultType="Integer">
+        SELECT COUNT (idEEPlanTrabajo) FROM eeplantrabajo;
+    </select>
+    
     <select id="obtenerPlanDeTrabajo" resultType="model.pojos.PlanDeTrabajo" parameterType="Integer">
         SELECT pt.idPlanDeTrabajo, pt.formato,pt.fechaAprobacion,pt.objetivoGeneral,pt.programaEducativo 
         FROM plandetrabajo

@@ -23,6 +23,53 @@ import model.pojos.Tema;
 import org.apache.ibatis.session.SqlSession;
 
 public class PlanDeTrabajoDAO {
+    public static Integer contarPlanes() {
+        Integer num = null;
+        SqlSession conn = null;
+        try {
+            conn = MyBatisUtils.getSession();
+            num = new Integer(conn.selectOne("PlanDeTrabajo.contarPlanes"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return num;
+    }
+    
+    public static Integer contarObjetivosParticulares() {
+        Integer num = null;
+        SqlSession conn = null;
+        try {
+            conn = MyBatisUtils.getSession();
+            num = new Integer(conn.selectOne("PlanDeTrabajo.contarObjetivosParticulares"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return num;
+    }
+    
+    public static Integer contarEEPlanTrabajo() {
+        Integer num = null;
+        SqlSession conn = null;
+        try {
+            conn = MyBatisUtils.getSession();
+            num = new Integer(conn.selectOne("PlanDeTrabajo.contarEEPlanTrabajo"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return num;
+    }
     /**
      * Obtener un plan de curso en especifico
      * @param idCurso curso del cual sacar el plan de curso
